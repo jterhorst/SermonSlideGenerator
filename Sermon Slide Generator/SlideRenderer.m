@@ -12,7 +12,7 @@
 
 - (NSImage *)imageForSlideContainer:(SlideContainer *)slide
 {
-    
+    return nil;
 }
 
 @end
