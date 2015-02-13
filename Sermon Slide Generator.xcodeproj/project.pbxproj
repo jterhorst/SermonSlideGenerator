@@ -15,6 +15,12 @@
 		580103631A8DA44000FC45A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 580103621A8DA44000FC45A0 /* Images.xcassets */; };
 		580103661A8DA44000FC45A0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580103641A8DA44000FC45A0 /* MainMenu.xib */; };
 		580103721A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 580103711A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m */; };
+		58C093EF1A8E849600F1F964 /* SlideRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093EE1A8E849600F1F964 /* SlideRenderer.m */; };
+		58C093F01A8E849600F1F964 /* SlideRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093EE1A8E849600F1F964 /* SlideRenderer.m */; };
+		58C093F31A8E855A00F1F964 /* SlideContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F21A8E855A00F1F964 /* SlideContainer.m */; };
+		58C093F41A8E855A00F1F964 /* SlideContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F21A8E855A00F1F964 /* SlideContainer.m */; };
+		58C093F81A8E862900F1F964 /* SlideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F71A8E862900F1F964 /* SlideElement.m */; };
+		58C093F91A8E862900F1F964 /* SlideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F71A8E862900F1F964 /* SlideElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		5801036B1A8DA44000FC45A0 /* Sermon Slide GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sermon Slide GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		580103701A8DA44100FC45A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		580103711A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sermon_Slide_GeneratorTests.m; sourceTree = "<group>"; };
+		58C093ED1A8E849600F1F964 /* SlideRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideRenderer.h; sourceTree = "<group>"; };
+		58C093EE1A8E849600F1F964 /* SlideRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideRenderer.m; sourceTree = "<group>"; };
+		58C093F11A8E855A00F1F964 /* SlideContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideContainer.h; sourceTree = "<group>"; };
+		58C093F21A8E855A00F1F964 /* SlideContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideContainer.m; sourceTree = "<group>"; };
+		58C093F61A8E862900F1F964 /* SlideElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideElement.h; sourceTree = "<group>"; };
+		58C093F71A8E862900F1F964 /* SlideElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +95,7 @@
 		580103511A8DA44000FC45A0 /* Sermon Slide Generator */ = {
 			isa = PBXGroup;
 			children = (
+				58C093F51A8E856500F1F964 /* SlideRenderer */,
 				580103541A8DA44000FC45A0 /* AppDelegate.h */,
 				580103551A8DA44000FC45A0 /* AppDelegate.m */,
 				580103591A8DA44000FC45A0 /* Document.h */,
@@ -120,6 +133,19 @@
 				580103701A8DA44100FC45A0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58C093F51A8E856500F1F964 /* SlideRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				58C093ED1A8E849600F1F964 /* SlideRenderer.h */,
+				58C093EE1A8E849600F1F964 /* SlideRenderer.m */,
+				58C093F11A8E855A00F1F964 /* SlideContainer.h */,
+				58C093F21A8E855A00F1F964 /* SlideContainer.m */,
+				58C093F61A8E862900F1F964 /* SlideElement.h */,
+				58C093F71A8E862900F1F964 /* SlideElement.m */,
+			);
+			name = SlideRenderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,8 +251,11 @@
 			files = (
 				580103611A8DA44000FC45A0 /* Document.xcdatamodeld in Sources */,
 				5801035B1A8DA44000FC45A0 /* Document.m in Sources */,
+				58C093EF1A8E849600F1F964 /* SlideRenderer.m in Sources */,
+				58C093F31A8E855A00F1F964 /* SlideContainer.m in Sources */,
 				580103581A8DA44000FC45A0 /* main.m in Sources */,
 				580103561A8DA44000FC45A0 /* AppDelegate.m in Sources */,
+				58C093F81A8E862900F1F964 /* SlideElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58C093F91A8E862900F1F964 /* SlideElement.m in Sources */,
+				58C093F41A8E855A00F1F964 /* SlideContainer.m in Sources */,
+				58C093F01A8E849600F1F964 /* SlideRenderer.m in Sources */,
 				580103721A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
