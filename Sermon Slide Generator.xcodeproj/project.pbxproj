@@ -21,6 +21,14 @@
 		58C093F41A8E855A00F1F964 /* SlideContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F21A8E855A00F1F964 /* SlideContainer.m */; };
 		58C093F81A8E862900F1F964 /* SlideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F71A8E862900F1F964 /* SlideElement.m */; };
 		58C093F91A8E862900F1F964 /* SlideElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C093F71A8E862900F1F964 /* SlideElement.m */; };
+		58DFF84F1A912CD200C8BFA6 /* WKTSermonTitleRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF84E1A912CD200C8BFA6 /* WKTSermonTitleRow.m */; };
+		58DFF8501A912CD200C8BFA6 /* WKTSermonTitleRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF84E1A912CD200C8BFA6 /* WKTSermonTitleRow.m */; };
+		58DFF8531A912DDB00C8BFA6 /* WKTSermonPointRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8521A912DDB00C8BFA6 /* WKTSermonPointRow.m */; };
+		58DFF8541A912DDB00C8BFA6 /* WKTSermonPointRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8521A912DDB00C8BFA6 /* WKTSermonPointRow.m */; };
+		58DFF8571A912F2400C8BFA6 /* WKTSermonMediaRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8561A912F2400C8BFA6 /* WKTSermonMediaRow.m */; };
+		58DFF8581A912F2400C8BFA6 /* WKTSermonMediaRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8561A912F2400C8BFA6 /* WKTSermonMediaRow.m */; };
+		58DFF85B1A912F5100C8BFA6 /* WKTSermonScriptureRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF85A1A912F5100C8BFA6 /* WKTSermonScriptureRow.m */; };
+		58DFF85C1A912F5100C8BFA6 /* WKTSermonScriptureRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF85A1A912F5100C8BFA6 /* WKTSermonScriptureRow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +62,14 @@
 		58C093F21A8E855A00F1F964 /* SlideContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideContainer.m; sourceTree = "<group>"; };
 		58C093F61A8E862900F1F964 /* SlideElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideElement.h; sourceTree = "<group>"; };
 		58C093F71A8E862900F1F964 /* SlideElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideElement.m; sourceTree = "<group>"; };
+		58DFF84D1A912CD200C8BFA6 /* WKTSermonTitleRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKTSermonTitleRow.h; sourceTree = "<group>"; };
+		58DFF84E1A912CD200C8BFA6 /* WKTSermonTitleRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKTSermonTitleRow.m; sourceTree = "<group>"; };
+		58DFF8511A912DDB00C8BFA6 /* WKTSermonPointRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKTSermonPointRow.h; sourceTree = "<group>"; };
+		58DFF8521A912DDB00C8BFA6 /* WKTSermonPointRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKTSermonPointRow.m; sourceTree = "<group>"; };
+		58DFF8551A912F2400C8BFA6 /* WKTSermonMediaRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKTSermonMediaRow.h; sourceTree = "<group>"; };
+		58DFF8561A912F2400C8BFA6 /* WKTSermonMediaRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKTSermonMediaRow.m; sourceTree = "<group>"; };
+		58DFF8591A912F5100C8BFA6 /* WKTSermonScriptureRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKTSermonScriptureRow.h; sourceTree = "<group>"; };
+		58DFF85A1A912F5100C8BFA6 /* WKTSermonScriptureRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKTSermonScriptureRow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +121,14 @@
 				580103641A8DA44000FC45A0 /* MainMenu.xib */,
 				5801035F1A8DA44000FC45A0 /* Document.xcdatamodeld */,
 				580103521A8DA44000FC45A0 /* Supporting Files */,
+				58DFF84D1A912CD200C8BFA6 /* WKTSermonTitleRow.h */,
+				58DFF84E1A912CD200C8BFA6 /* WKTSermonTitleRow.m */,
+				58DFF8511A912DDB00C8BFA6 /* WKTSermonPointRow.h */,
+				58DFF8521A912DDB00C8BFA6 /* WKTSermonPointRow.m */,
+				58DFF8551A912F2400C8BFA6 /* WKTSermonMediaRow.h */,
+				58DFF8561A912F2400C8BFA6 /* WKTSermonMediaRow.m */,
+				58DFF8591A912F5100C8BFA6 /* WKTSermonScriptureRow.h */,
+				58DFF85A1A912F5100C8BFA6 /* WKTSermonScriptureRow.m */,
 			);
 			path = "Sermon Slide Generator";
 			sourceTree = "<group>";
@@ -251,10 +275,14 @@
 			files = (
 				580103611A8DA44000FC45A0 /* Document.xcdatamodeld in Sources */,
 				5801035B1A8DA44000FC45A0 /* Document.m in Sources */,
+				58DFF84F1A912CD200C8BFA6 /* WKTSermonTitleRow.m in Sources */,
 				58C093EF1A8E849600F1F964 /* SlideRenderer.m in Sources */,
 				58C093F31A8E855A00F1F964 /* SlideContainer.m in Sources */,
 				580103581A8DA44000FC45A0 /* main.m in Sources */,
 				580103561A8DA44000FC45A0 /* AppDelegate.m in Sources */,
+				58DFF8531A912DDB00C8BFA6 /* WKTSermonPointRow.m in Sources */,
+				58DFF85B1A912F5100C8BFA6 /* WKTSermonScriptureRow.m in Sources */,
+				58DFF8571A912F2400C8BFA6 /* WKTSermonMediaRow.m in Sources */,
 				58C093F81A8E862900F1F964 /* SlideElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,8 +293,12 @@
 			files = (
 				58C093F91A8E862900F1F964 /* SlideElement.m in Sources */,
 				58C093F41A8E855A00F1F964 /* SlideContainer.m in Sources */,
+				58DFF8581A912F2400C8BFA6 /* WKTSermonMediaRow.m in Sources */,
 				58C093F01A8E849600F1F964 /* SlideRenderer.m in Sources */,
 				580103721A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m in Sources */,
+				58DFF85C1A912F5100C8BFA6 /* WKTSermonScriptureRow.m in Sources */,
+				58DFF8541A912DDB00C8BFA6 /* WKTSermonPointRow.m in Sources */,
+				58DFF8501A912CD200C8BFA6 /* WKTSermonTitleRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

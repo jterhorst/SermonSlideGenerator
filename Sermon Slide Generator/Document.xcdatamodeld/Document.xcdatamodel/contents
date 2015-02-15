@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Sermon" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6750" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Element" syncable="YES">
+        <attribute name="fontName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fontSize" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="slide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Slide" inverseName="elements" inverseEntity="Slide" syncable="YES"/>
+    </entity>
+    <entity name="Sermon" syncable="YES">
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="slides" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Slide" inverseName="sermon" inverseEntity="Slide" syncable="YES"/>
+    </entity>
+    <entity name="Slide" syncable="YES">
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="elements" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Element" inverseName="slide" inverseEntity="Element" syncable="YES"/>
+        <relationship name="sermon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sermon" inverseName="slides" inverseEntity="Sermon" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Sermon" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Sermon" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Slide" positionX="-63" positionY="0" width="128" height="88"/>
+        <element name="Element" positionX="-54" positionY="9" width="128" height="133"/>
     </elements>
 </model>
