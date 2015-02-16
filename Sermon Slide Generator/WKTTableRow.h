@@ -1,5 +1,5 @@
 //
-//  WKTSermonPointRow.h
+//  WKTTableRow.h
 //  Sermon Slide Generator
 //
 //  Created by Jason Terhorst on 2/15/15.
@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "WKTTableRow.h"
 
-@interface WKTSermonPointRow : WKTTableRow
-
+@interface WKTTableRow : NSTableCellView
+@property (nonatomic, strong) NSPopUpButton * typeSelection;
 @end

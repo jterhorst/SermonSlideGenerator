@@ -9,4 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface Document : NSPersistentDocument
+@property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
+
+- (IBAction)addSlide:(id)sender;
 @end

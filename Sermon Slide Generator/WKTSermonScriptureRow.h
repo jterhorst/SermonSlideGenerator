@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "WKTTableRow.h"
 
-@interface WKTSermonScriptureRow : NSTableCellView
+@interface WKTSermonScriptureRow : WKTTableRow
 
 @end
