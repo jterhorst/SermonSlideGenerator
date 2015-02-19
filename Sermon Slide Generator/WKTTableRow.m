@@ -50,7 +50,22 @@
 		subtext = activeSlide.text;
 	}
 
-	[subtext drawInRect:NSMakeRect(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 20) withAttributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14], NSForegroundColorAttributeName:textColor}];
+	[subtext drawInRect:NSMakeRect(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 30) withAttributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14], NSForegroundColorAttributeName:textColor}];
+
+	if (activeSlide.type == 3)
+	{
+		NSImage * imageFile = [[NSImage alloc] initWithContentsOfFile:activeSlide.mediaPath];
+		[imageFile drawInRect:NSMakeRect(10, 10, self.bounds.size.height - 35, self.bounds.size.height - 35)];
+	}
+	else if (activeSlide.type == 4)
+	{
+		NSColor * referenceColor = [NSColor darkGrayColor];
+		if (self.backgroundStyle == NSBackgroundStyleDark)
+		{
+			referenceColor = [NSColor whiteColor];
+		}
+		[activeSlide.reference drawAtPoint:NSMakePoint(130, self.bounds.size.height - 20) withAttributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14], NSForegroundColorAttributeName:referenceColor}];
+	}
 }
 
 @end

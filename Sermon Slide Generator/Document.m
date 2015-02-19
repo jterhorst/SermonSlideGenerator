@@ -54,6 +54,9 @@
 	for (Slide * slide in _sermonContainer.slides)
 	{
 		[slide addObserver:self forKeyPath:@"type" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+		[slide addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+		[slide addObserver:self forKeyPath:@"reference" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+		[slide addObserver:self forKeyPath:@"mediaPath" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 	}
 
 	NSLog(@"%lu slides", (unsigned long)[_sermonContainer.slides count]);
@@ -63,9 +66,11 @@
 {
 	if ([keyPath isEqualToString:@"type"])
 	{
-		NSIndexSet * selectedIndexSet = [_slidesArrayController selectionIndexes];
 		[_slidesTable reloadData];
-		[_slidesArrayController setSelectionIndexes:selectedIndexSet];
+	}
+	else if ([keyPath isEqualToString:@"text"] || [keyPath isEqualToString:@"reference"] || [keyPath isEqualToString:@"mediaPath"])
+	{
+		// some kind of redraw without reloading the selection
 	}
 }
 
@@ -74,6 +79,9 @@
 	for (Slide * slide in _sermonContainer.slides)
 	{
 		[slide removeObserver:self forKeyPath:@"type"];
+		[slide removeObserver:self forKeyPath:@"text"];
+		[slide removeObserver:self forKeyPath:@"reference"];
+		[slide removeObserver:self forKeyPath:@"mediaPath"];
 	}
 }
 
@@ -94,10 +102,10 @@
 	[openPanel setAllowsMultipleSelection:NO];
 	[openPanel setAllowedFileTypes:@[@"jpg",@"png",@"gif"]];
 	NSInteger panelStatus = [openPanel runModal];
-	if (panelStatus == NSModalResponseContinue)
+	if (panelStatus == NSFileHandlingPanelOKButton)
 	{
-		Slide * slide = _slidesArrayController.selection;
-		slide.mediaPath = [[openPanel URL] path];
+		Slide * slide = [[_slidesArrayController selectedObjects] firstObject];
+		slide.mediaPath = [[[openPanel URLs] firstObject] path];
 	}
 }
 
@@ -112,28 +120,42 @@
 }
 
 
+float heightForStringDrawing(NSString *myString, NSFont *myFont, float myWidth)
+{
+	NSTextStorage *textStorage = [[NSTextStorage alloc] initWithString:myString];
+	NSTextContainer *textContainer = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(myWidth, FLT_MAX)];
+	NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+	[layoutManager addTextContainer:textContainer];
+	[textStorage addLayoutManager:layoutManager];
+	[textStorage addAttribute:NSFontAttributeName value:myFont range:NSMakeRange(0, [textStorage length])];
+	[textContainer setLineFragmentPadding:0.0];
+
+	(void) [layoutManager glyphRangeForTextContainer:textContainer];
+	return [layoutManager usedRectForTextContainer:textContainer].size.height;
+}
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
 {
 	Slide * activeSlide = [[_sermonContainer orderedSlides] objectAtIndex:row];
 	switch (activeSlide.type) {
 		case SlideTypeTitle:
-			return 88;
-			break;
 		case SlideTypePoint:
-			return 88;
+		case SlideTypeScripture:
+		{
+			NSString * slideText = activeSlide.text;
+			if (!slideText) slideText = @"";
+			float textSize = heightForStringDrawing(slideText, [NSFont boldSystemFontOfSize:14], tableView.frame.size.width - 20);
+			return 30 + textSize;
+		}
 			break;
 		case SlideTypeMedia:
 			return 124;
-			break;
-		case SlideTypeScripture:
-			return 88;
 			break;
 	  default:
 			break;
 	}
 
-	return 44;
+	return 28;
 }
 
 + (BOOL)autosavesInPlace {

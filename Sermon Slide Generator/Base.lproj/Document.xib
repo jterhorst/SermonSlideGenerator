@@ -7,7 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
                 <outlet property="sermonObjectController" destination="Jld-Ui-N2f" id="AIS-oc-0lP"/>
-                <outlet property="slidesArrayController" destination="5Fi-vs-zU5" id="SsA-Rg-CvC"/>
+                <outlet property="slidesArrayController" destination="5Fi-vs-zU5" id="suQ-gA-VQE"/>
                 <outlet property="slidesTable" destination="dnR-oU-TSK" id="jfP-cT-Hba"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
@@ -212,7 +212,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="chooseMedia:" target="-2" id="gHk-Ue-IYo"/>
+                            <action selector="chooseMedia:" target="-2" id="eXS-YN-tda"/>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KCs-VJ-A3d">
@@ -220,16 +220,17 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="M0l-bZ-rp4"/>
                         </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="John 3:16" drawsBackground="YES" id="u9E-2r-woI">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="John 3:16" drawsBackground="YES" id="u9E-2r-woI">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.reference" id="8OP-te-Df9">
+                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.reference" id="vEZ-Bm-NpX">
                                 <dictionary key="options">
                                     <bool key="NSConditionallySetsEnabled" value="YES"/>
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSValidatesImmediately" value="YES"/>
                                 </dictionary>
                             </binding>
                         </connections>
