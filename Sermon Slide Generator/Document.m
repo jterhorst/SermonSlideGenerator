@@ -9,10 +9,10 @@
 #import "Document.h"
 
 #import "Slide.h"
-#import "Sermon.h"
+
 
 @interface Document () <NSTableViewDataSource, NSTableViewDelegate>
-@property (nonatomic, strong) Sermon * sermonContainer;
+
 @end
 
 @implementation Document
@@ -49,6 +49,8 @@
 		_sermonContainer.slides = newSlides;
 	}
 
+	_sermonObjectController.content = _sermonContainer;
+
 	for (Slide * slide in _sermonContainer.slides)
 	{
 		[slide addObserver:self forKeyPath:@"type" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
@@ -61,7 +63,9 @@
 {
 	if ([keyPath isEqualToString:@"type"])
 	{
+		NSIndexSet * selectedIndexSet = [_slidesArrayController selectionIndexes];
 		[_slidesTable reloadData];
+		[_slidesArrayController setSelectionIndexes:selectedIndexSet];
 	}
 }
 
@@ -79,7 +83,22 @@
 	newSlide.slideIndex = [_sermonContainer.slides count];
 	[_sermonContainer addSlidesObject:newSlide];
 
+	_sermonObjectController.content = _sermonContainer;
+	_slidesArrayController.content = [_sermonContainer orderedSlides];
 	[_slidesTable reloadData];
+}
+
+- (IBAction)chooseMedia:(id)sender
+{
+	NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+	[openPanel setAllowsMultipleSelection:NO];
+	[openPanel setAllowedFileTypes:@[@"jpg",@"png",@"gif"]];
+	NSInteger panelStatus = [openPanel runModal];
+	if (panelStatus == NSModalResponseContinue)
+	{
+		Slide * slide = _slidesArrayController.selection;
+		slide.mediaPath = [[openPanel URL] path];
+	}
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

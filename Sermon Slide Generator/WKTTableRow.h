@@ -9,5 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface WKTTableRow : NSTableCellView
-@property (nonatomic, strong) NSPopUpButton * typeSelection;
+//@property (nonatomic, strong) NSPopUpButton * typeSelection;
 @end

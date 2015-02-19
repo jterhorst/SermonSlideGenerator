@@ -7,13 +7,14 @@
 //
 
 #import "WKTTableRow.h"
+#import "Slide.h"
 
 @implementation WKTTableRow
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
-    
+    /*
 	if (!_typeSelection)
 	{
 		_typeSelection = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(10, self.bounds.size.height - 35, 150, 25) pullsDown:NO];
@@ -25,9 +26,31 @@
 																										NSConditionallySetsEditableBindingOption : @YES, NSRaisesForNotApplicableKeysBindingOption : @YES })];
 		
 	}
+	 */
+
+	NSArray * titleArray = @[@"Blank slide",@"Title slide",@"Point slide",@"Media slide",@"Scripture slides"];
 
 	self.textField.stringValue = @"";
-	
+
+	NSColor * textColor = [NSColor blackColor];
+
+
+	if (self.backgroundStyle == NSBackgroundStyleDark)
+	{
+		textColor = [NSColor whiteColor];
+	}
+
+	Slide * activeSlide = self.objectValue;
+	NSString * subtext = @"";
+
+	[[titleArray objectAtIndex:activeSlide.type] drawAtPoint:NSMakePoint(10, self.bounds.size.height - 20) withAttributes:@{NSFontAttributeName:[NSFont boldSystemFontOfSize:14], NSForegroundColorAttributeName:textColor}];
+
+	if (activeSlide.type == 1 || activeSlide.type == 2 || activeSlide.type == 4)
+	{
+		subtext = activeSlide.text;
+	}
+
+	[subtext drawInRect:NSMakeRect(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 20) withAttributes:@{NSFontAttributeName:[NSFont systemFontOfSize:14], NSForegroundColorAttributeName:textColor}];
 }
 
 @end

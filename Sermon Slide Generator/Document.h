@@ -7,9 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Sermon.h"
 
 @interface Document : NSPersistentDocument
 @property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
-
+@property (nonatomic, strong) Sermon * sermonContainer;
 - (IBAction)addSlide:(id)sender;
+
+- (IBAction)chooseMedia:(id)sender;
+
+@property (nonatomic, weak) IBOutlet NSObjectController * sermonObjectController;
+@property (nonatomic, weak) IBOutlet NSArrayController * slidesArrayController;
+
 @end
