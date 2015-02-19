@@ -66,7 +66,9 @@
 {
 	if ([keyPath isEqualToString:@"type"])
 	{
+		NSIndexSet * selectedIndexSet = [_slidesArrayController selectionIndexes];
 		[_slidesTable reloadData];
+		[_slidesArrayController setSelectionIndexes:selectedIndexSet];
 	}
 	else if ([keyPath isEqualToString:@"text"] || [keyPath isEqualToString:@"reference"] || [keyPath isEqualToString:@"mediaPath"])
 	{
