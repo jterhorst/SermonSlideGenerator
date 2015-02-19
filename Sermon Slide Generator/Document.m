@@ -71,6 +71,8 @@
 	else if ([keyPath isEqualToString:@"text"] || [keyPath isEqualToString:@"reference"] || [keyPath isEqualToString:@"mediaPath"])
 	{
 		// some kind of redraw without reloading the selection
+		NSInteger slideIndex = [[_slidesArrayController arrangedObjects] indexOfObject:object];
+		[_slidesTable reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:slideIndex] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
 	}
 }
 
