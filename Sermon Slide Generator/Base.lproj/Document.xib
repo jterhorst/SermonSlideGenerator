@@ -9,6 +9,7 @@
                 <outlet property="sermonObjectController" destination="Jld-Ui-N2f" id="AIS-oc-0lP"/>
                 <outlet property="slidesArrayController" destination="5Fi-vs-zU5" id="suQ-gA-VQE"/>
                 <outlet property="slidesTable" destination="dnR-oU-TSK" id="jfP-cT-Hba"/>
+                <outlet property="thumbnailImageView" destination="tTh-6T-k9C" id="Uei-ho-ig7"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -16,15 +17,15 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="213" y="92" width="883" height="596"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="contentRect" x="213" y="92" width="883" height="759"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
-                <rect key="frame" x="0.0" y="0.0" width="883" height="596"/>
+                <rect key="frame" x="0.0" y="0.0" width="883" height="759"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTd-uK-8TY">
-                        <rect key="frame" x="-1" y="60" width="406" height="456"/>
+                        <rect key="frame" x="-1" y="60" width="406" height="619"/>
                         <clipView key="contentView" id="FsE-6l-dEw">
                             <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +108,7 @@
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-sJ-Hcb">
-                        <rect key="frame" x="431" y="476" width="238" height="26"/>
+                        <rect key="frame" x="431" y="639" width="238" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="2Nz-Zg-Rwo"/>
                             <constraint firstAttribute="width" constant="233" id="WEd-iR-aTf"/>
@@ -134,7 +135,7 @@
                         </connections>
                     </popUpButton>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQU-Ij-Bz7">
-                        <rect key="frame" x="433" y="328" width="430" height="131"/>
+                        <rect key="frame" x="433" y="491" width="430" height="131"/>
                         <clipView key="contentView" id="EgT-KT-DaQ">
                             <rect key="frame" x="1" y="1" width="223" height="133"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +174,7 @@
                         </scroller>
                     </scrollView>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yaX-Ob-hU7">
-                        <rect key="frame" x="433" y="298" width="430" height="22"/>
+                        <rect key="frame" x="433" y="461" width="430" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="oZR-0S-1xz"/>
                         </constraints>
@@ -193,7 +194,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Cz-7i-dR8">
-                        <rect key="frame" x="433" y="266" width="432" height="17"/>
+                        <rect key="frame" x="433" y="429" width="432" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="g4l-YN-3c6">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -204,7 +205,7 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-or-Grs">
-                        <rect key="frame" x="429" y="230" width="122" height="32"/>
+                        <rect key="frame" x="429" y="393" width="122" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="110" id="C74-rJ-lIm"/>
                             <constraint firstAttribute="height" constant="21" id="Y5z-l4-OWn"/>
@@ -218,7 +219,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KCs-VJ-A3d">
-                        <rect key="frame" x="433" y="176" width="430" height="22"/>
+                        <rect key="frame" x="433" y="339" width="430" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="M0l-bZ-rp4"/>
                         </constraints>
@@ -239,7 +240,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RWa-l2-AvW">
-                        <rect key="frame" x="20" y="554" width="843" height="22"/>
+                        <rect key="frame" x="20" y="717" width="843" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Sermon Title" drawsBackground="YES" id="mM3-T6-R70">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -254,7 +255,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qqs-PQ-9Oc">
-                        <rect key="frame" x="20" y="524" width="843" height="22"/>
+                        <rect key="frame" x="20" y="687" width="843" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Subtitle" drawsBackground="YES" id="66O-Jd-5uD">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -268,6 +269,10 @@
                             </binding>
                         </connections>
                     </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-6T-k9C">
+                        <rect key="frame" x="468" y="77" width="361" height="230"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="ffd-ve-XnB"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="YQU-Ij-Bz7" firstAttribute="leading" secondItem="UTd-uK-8TY" secondAttribute="trailing" constant="28" id="0sB-3X-UwV"/>
@@ -303,11 +308,11 @@
                     <constraint firstItem="RWa-l2-AvW" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" symbolic="YES" id="zTs-aX-wQi"/>
                 </constraints>
             </view>
-            <contentBorderThickness minY="22"/>
+            <contentBorderThickness minY="60"/>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
-            <point key="canvasLocation" x="522.5" y="496"/>
+            <point key="canvasLocation" x="522.5" y="577.5"/>
         </window>
         <arrayController mode="entity" entityName="Slide" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="5Fi-vs-zU5">
             <connections>

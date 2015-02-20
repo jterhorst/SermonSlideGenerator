@@ -10,8 +10,11 @@
 #import "Sermon.h"
 
 @interface Document : NSPersistentDocument
+
 @property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
 @property (nonatomic, strong) Sermon * sermonContainer;
+@property (nonatomic, weak) IBOutlet NSImageView * thumbnailImageView;
+
 - (IBAction)addSlide:(id)sender;
 
 - (IBAction)chooseMedia:(id)sender;

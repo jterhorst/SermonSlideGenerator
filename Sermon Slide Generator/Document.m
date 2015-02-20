@@ -9,7 +9,7 @@
 #import "Document.h"
 
 #import "Slide.h"
-
+#import "SlideRenderer.h"
 
 @interface Document () <NSTableViewDataSource, NSTableViewDelegate>
 
@@ -59,7 +59,7 @@
 		[slide addObserver:self forKeyPath:@"mediaPath" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
 	}
 
-	NSLog(@"%lu slides", (unsigned long)[_sermonContainer.slides count]);
+	//NSLog(@"%lu slides", (unsigned long)[_sermonContainer.slides count]);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -121,6 +121,12 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
 	return [[_sermonContainer orderedSlides] objectAtIndex:row];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+	SlideRenderer * renderer = [[SlideRenderer alloc] init];
+	_thumbnailImageView.image = [renderer imageForSlideContainer:nil renderSize:_thumbnailImageView.frame.size];
 }
 
 

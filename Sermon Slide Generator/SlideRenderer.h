@@ -11,5 +11,5 @@
 @class SlideContainer;
 
 @interface SlideRenderer : NSObject
-- (NSImage *)imageForSlideContainer:(SlideContainer *)slide;
+- (NSImage *)imageForSlideContainer:(SlideContainer *)slide renderSize:(CGSize)renderSize;
 @end
