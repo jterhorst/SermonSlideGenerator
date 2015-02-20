@@ -17,7 +17,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="213" y="92" width="883" height="596"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
                 <rect key="frame" x="0.0" y="0.0" width="883" height="596"/>
@@ -149,9 +149,10 @@
                                     <size key="minSize" width="428" height="129"/>
                                     <size key="maxSize" width="463" height="10000000"/>
                                     <connections>
-                                        <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.text" id="rvz-uu-tbO">
+                                        <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.text" id="6qY-HE-Vb6">
                                             <dictionary key="options">
                                                 <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                <string key="NSNullPlaceholder">Body text here</string>
                                             </dictionary>
                                         </binding>
                                     </connections>
@@ -182,10 +183,11 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.label" id="uxE-dI-I5a">
+                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.label" id="tB8-5r-TzV">
                                 <dictionary key="options">
                                     <bool key="NSConditionallySetsEnabled" value="YES"/>
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <string key="NSNullPlaceholder">Slide label</string>
                                 </dictionary>
                             </binding>
                         </connections>
@@ -226,10 +228,11 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.reference" id="vEZ-Bm-NpX">
+                            <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.reference" id="fLN-0W-YVH">
                                 <dictionary key="options">
                                     <bool key="NSConditionallySetsEnabled" value="YES"/>
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <string key="NSNullPlaceholder">John 3:16 (NIV)</string>
                                     <bool key="NSValidatesImmediately" value="YES"/>
                                 </dictionary>
                             </binding>
@@ -243,7 +246,11 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="Jld-Ui-N2f" name="value" keyPath="selection.title" id="RqK-Wb-m3b"/>
+                            <binding destination="Jld-Ui-N2f" name="value" keyPath="selection.title" id="QP8-KF-Mly">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">Sermon Title</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qqs-PQ-9Oc">
@@ -254,7 +261,11 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="Jld-Ui-N2f" name="value" keyPath="selection.subtitle" id="prP-sE-h4O"/>
+                            <binding destination="Jld-Ui-N2f" name="value" keyPath="selection.subtitle" id="web-it-Tar">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">Sermon Subtitle</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </textField>
                 </subviews>
@@ -300,14 +311,14 @@
         </window>
         <arrayController mode="entity" entityName="Slide" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="5Fi-vs-zU5">
             <connections>
-                <binding destination="Jld-Ui-N2f" name="contentArray" keyPath="selection.orderedSlides" id="5Iv-I2-BeJ"/>
                 <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="4pN-EB-MIH"/>
+                <binding destination="Jld-Ui-N2f" name="contentArray" keyPath="selection.orderedSlides" id="5Iv-I2-BeJ"/>
             </connections>
         </arrayController>
         <objectController mode="entity" entityName="Sermon" id="Jld-Ui-N2f">
             <connections>
-                <binding destination="-2" name="contentObject" keyPath="sermonContainer" id="P8X-Om-DJ9"/>
                 <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="8rm-Um-bf7"/>
+                <binding destination="-2" name="contentObject" keyPath="sermonContainer" id="P8X-Om-DJ9"/>
             </connections>
         </objectController>
     </objects>
