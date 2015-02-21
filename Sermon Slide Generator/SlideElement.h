@@ -23,7 +23,7 @@ typedef enum {
 @interface SlideElement : NSObject
 @property (nonatomic, assign) SlideElementType elementType;
 @property (nonatomic, strong) NSString * textValue;
-@property (nonatomic, assign) NSTextAlignment * textAlignment;
+@property (nonatomic, assign) NSTextAlignment textAlignment;
 @property (nonatomic, assign) SlideVerticalAlignment verticalAlignment;
 @property (nonatomic, strong) NSString * imageFilePath;
 @end

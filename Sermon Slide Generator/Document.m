@@ -10,6 +10,8 @@
 
 #import "Slide.h"
 #import "SlideRenderer.h"
+#import "SlideContainer.h"
+#import "SlideElement.h"
 
 @interface Document () <NSTableViewDataSource, NSTableViewDelegate>
 
@@ -113,6 +115,58 @@
 	}
 }
 
+- (NSArray *)_slideElementsForSlide:(Slide *)slide
+{
+	NSMutableArray * slideElements = [NSMutableArray array];
+	if (slide.type == SlideTypeMedia)
+	{
+		SlideElement * element = [[SlideElement alloc] init];
+		element.verticalAlignment = SlideVerticalAlignmentMiddle;
+		element.elementType = SlideElementTypeImage;
+		element.imageFilePath = slide.mediaPath;
+		[slideElements addObject:element];
+	}
+	else if (slide.type == SlideTypeBlank)
+	{
+		return slideElements;
+	}
+	else if (slide.type == SlideTypeTitle)
+	{
+		SlideElement * element = [[SlideElement alloc] init];
+		element.textValue = slide.text;
+		element.textAlignment = NSCenterTextAlignment;
+		element.verticalAlignment = SlideVerticalAlignmentBottom;
+		element.elementType = SlideElementTypeText;
+		[slideElements addObject:element];
+	}
+	else if (slide.type == SlideTypePoint)
+	{
+		SlideElement * element = [[SlideElement alloc] init];
+		element.textValue = slide.text;
+		element.textAlignment = NSCenterTextAlignment;
+		element.verticalAlignment = SlideVerticalAlignmentBottom;
+		element.elementType = SlideElementTypeText;
+		[slideElements addObject:element];
+	}
+	else if (slide.type == SlideTypeScripture)
+	{
+		SlideElement * bodyElement = [[SlideElement alloc] init];
+		bodyElement.textValue = slide.text;
+		bodyElement.textAlignment = NSLeftTextAlignment;
+		bodyElement.verticalAlignment = SlideVerticalAlignmentBottom;
+		bodyElement.elementType = SlideElementTypeText;
+		[slideElements addObject:bodyElement];
+
+		SlideElement * referenceElement = [[SlideElement alloc] init];
+		referenceElement.textValue = slide.reference;
+		referenceElement.textAlignment = NSLeftTextAlignment;
+		referenceElement.verticalAlignment = SlideVerticalAlignmentBottom;
+		referenceElement.elementType = SlideElementTypeText;
+		[slideElements addObject:referenceElement];
+	}
+	return slideElements;
+}
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	return [_sermonContainer.slides count];
@@ -126,7 +180,13 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
 	SlideRenderer * renderer = [[SlideRenderer alloc] init];
-	_thumbnailImageView.image = [renderer imageForSlideContainer:nil renderSize:_thumbnailImageView.frame.size];
+
+	NSArray * slidesArray = [self _slideElementsForSlide:[[_sermonContainer orderedSlides] objectAtIndex:[_slidesTable selectedRow]]];
+
+	SlideContainer * container = [[SlideContainer alloc] init];
+	container.slideElements = slidesArray;
+
+	_thumbnailImageView.image = [renderer imageForSlideContainer:container renderSize:_thumbnailImageView.frame.size];
 }
 
 

@@ -10,5 +10,4 @@
 
 @interface SlideContainer : NSObject
 @property (nonatomic, strong) NSArray * slideElements;
-@property (nonatomic, strong) NSString * label;
 @end
