@@ -140,8 +140,17 @@
 		BOOL shouldAutosizeText = NO;
 		NSString * textToRender = element.textValue;
 
+		if (element.fontName)
+		{
+			textFontName = element.fontName;
+		}
+		if (element.fontSize)
+		{
+			origSize = element.fontSize;
+		}
+
 		CGFloat marginTop = 5;
-		CGFloat marginBottom = 5;
+		CGFloat marginBottom = 5 + bottomOffset;
 		CGFloat marginLeft = 5;
 		CGFloat marginRight = 5;
 
@@ -273,7 +282,9 @@
 
 		CGPathAddRect(path, NULL, CGRectMake(xPos, yPos, textSize.width, textSize.height));
 
+		CFRange outputRange;
 		CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+		CGSize frameSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, stringToDraw.length), nil, constraint, &outputRange);
 
 		//Draw Frame
 		CTFrameDraw(frame, context);
@@ -285,6 +296,8 @@
 		CFRelease(font);
 		
 		CFRelease(paragraphStyle);
+
+		return CGSizeMake(frameSize.width, (frameSize.height / 2));
 	}
 
 	return CGSizeZero;

@@ -137,6 +137,8 @@
 		element.textAlignment = NSCenterTextAlignment;
 		element.verticalAlignment = SlideVerticalAlignmentBottom;
 		element.elementType = SlideElementTypeText;
+		element.fontName = @"MyriadPro-Bold";
+		element.fontSize = 45;
 		[slideElements addObject:element];
 	}
 	else if (slide.type == SlideTypePoint)
@@ -146,6 +148,8 @@
 		element.textAlignment = NSCenterTextAlignment;
 		element.verticalAlignment = SlideVerticalAlignmentBottom;
 		element.elementType = SlideElementTypeText;
+		element.fontName = @"MyriadPro-Bold";
+		element.fontSize = 40;
 		[slideElements addObject:element];
 	}
 	else if (slide.type == SlideTypeScripture)
@@ -155,6 +159,8 @@
 		bodyElement.textAlignment = NSLeftTextAlignment;
 		bodyElement.verticalAlignment = SlideVerticalAlignmentBottom;
 		bodyElement.elementType = SlideElementTypeText;
+		bodyElement.fontName = @"MyriadPro-Bold";
+		bodyElement.fontSize = 40;
 		[slideElements addObject:bodyElement];
 
 		SlideElement * referenceElement = [[SlideElement alloc] init];
@@ -162,6 +168,8 @@
 		referenceElement.textAlignment = NSLeftTextAlignment;
 		referenceElement.verticalAlignment = SlideVerticalAlignmentBottom;
 		referenceElement.elementType = SlideElementTypeText;
+		referenceElement.fontName = @"MyriadPro";
+		referenceElement.fontSize = 40;
 		[slideElements addObject:referenceElement];
 	}
 	return slideElements;

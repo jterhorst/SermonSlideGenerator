@@ -26,4 +26,6 @@ typedef enum {
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 @property (nonatomic, assign) SlideVerticalAlignment verticalAlignment;
 @property (nonatomic, strong) NSString * imageFilePath;
+@property (nonatomic, strong) NSString * fontName;
+@property (nonatomic, assign) CGFloat fontSize;
 @end
