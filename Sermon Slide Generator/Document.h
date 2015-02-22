@@ -13,7 +13,6 @@
 
 @property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
 @property (nonatomic, strong) Sermon * sermonContainer;
-@property (nonatomic, weak) IBOutlet NSImageView * thumbnailImageView;
 
 - (IBAction)addSlide:(id)sender;
 

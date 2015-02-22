@@ -115,65 +115,7 @@
 	}
 }
 
-- (NSArray *)_slideElementsForSlide:(Slide *)slide
-{
-	NSMutableArray * slideElements = [NSMutableArray array];
-	if (slide.type == SlideTypeMedia)
-	{
-		SlideElement * element = [[SlideElement alloc] init];
-		element.verticalAlignment = SlideVerticalAlignmentMiddle;
-		element.elementType = SlideElementTypeImage;
-		element.imageFilePath = slide.mediaPath;
-		[slideElements addObject:element];
-	}
-	else if (slide.type == SlideTypeBlank)
-	{
-		return slideElements;
-	}
-	else if (slide.type == SlideTypeTitle)
-	{
-		SlideElement * element = [[SlideElement alloc] init];
-		element.textValue = slide.text;
-		element.textAlignment = NSCenterTextAlignment;
-		element.verticalAlignment = SlideVerticalAlignmentBottom;
-		element.elementType = SlideElementTypeText;
-		element.fontName = @"MyriadPro-Bold";
-		element.fontSize = 45;
-		[slideElements addObject:element];
-	}
-	else if (slide.type == SlideTypePoint)
-	{
-		SlideElement * element = [[SlideElement alloc] init];
-		element.textValue = slide.text;
-		element.textAlignment = NSCenterTextAlignment;
-		element.verticalAlignment = SlideVerticalAlignmentBottom;
-		element.elementType = SlideElementTypeText;
-		element.fontName = @"MyriadPro-Bold";
-		element.fontSize = 40;
-		[slideElements addObject:element];
-	}
-	else if (slide.type == SlideTypeScripture)
-	{
-		SlideElement * bodyElement = [[SlideElement alloc] init];
-		bodyElement.textValue = slide.text;
-		bodyElement.textAlignment = NSLeftTextAlignment;
-		bodyElement.verticalAlignment = SlideVerticalAlignmentBottom;
-		bodyElement.elementType = SlideElementTypeText;
-		bodyElement.fontName = @"MyriadPro-Bold";
-		bodyElement.fontSize = 40;
-		[slideElements addObject:bodyElement];
 
-		SlideElement * referenceElement = [[SlideElement alloc] init];
-		referenceElement.textValue = slide.reference;
-		referenceElement.textAlignment = NSLeftTextAlignment;
-		referenceElement.verticalAlignment = SlideVerticalAlignmentBottom;
-		referenceElement.elementType = SlideElementTypeText;
-		referenceElement.fontName = @"MyriadPro";
-		referenceElement.fontSize = 40;
-		[slideElements addObject:referenceElement];
-	}
-	return slideElements;
-}
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
@@ -187,14 +129,11 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-	SlideRenderer * renderer = [[SlideRenderer alloc] init];
+	//SlideRenderer * renderer = [[SlideRenderer alloc] init];
 
-	NSArray * slidesArray = [self _slideElementsForSlide:[[_sermonContainer orderedSlides] objectAtIndex:[_slidesTable selectedRow]]];
 
-	SlideContainer * container = [[SlideContainer alloc] init];
-	container.slideElements = slidesArray;
 
-	_thumbnailImageView.image = [renderer imageForSlideContainer:container renderSize:_thumbnailImageView.frame.size];
+	//_thumbnailImageView.image = [renderer imageMaskForSlideContainer:container renderSize:_thumbnailImageView.frame.size];
 }
 
 

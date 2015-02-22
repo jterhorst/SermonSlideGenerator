@@ -27,6 +27,8 @@
 		58DFF8641A91613800C8BFA6 /* Sermon.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8621A91613800C8BFA6 /* Sermon.m */; };
 		58DFF8671A91613800C8BFA6 /* Slide.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8661A91613800C8BFA6 /* Slide.m */; };
 		58DFF8681A91613800C8BFA6 /* Slide.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DFF8661A91613800C8BFA6 /* Slide.m */; };
+		58FCCD4B1A9A7621006262AA /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FCCD4A1A9A7621006262AA /* ThumbnailViewController.m */; };
+		58FCCD4C1A9A7621006262AA /* ThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58FCCD4A1A9A7621006262AA /* ThumbnailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		58DFF8621A91613800C8BFA6 /* Sermon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sermon.m; sourceTree = "<group>"; };
 		58DFF8651A91613800C8BFA6 /* Slide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slide.h; sourceTree = "<group>"; };
 		58DFF8661A91613800C8BFA6 /* Slide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slide.m; sourceTree = "<group>"; };
+		58FCCD491A9A7621006262AA /* ThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailViewController.h; sourceTree = "<group>"; };
+		58FCCD4A1A9A7621006262AA /* ThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 				58C093F51A8E856500F1F964 /* SlideRenderer */,
 				580103541A8DA44000FC45A0 /* AppDelegate.h */,
 				580103551A8DA44000FC45A0 /* AppDelegate.m */,
+				58FCCD491A9A7621006262AA /* ThumbnailViewController.h */,
+				58FCCD4A1A9A7621006262AA /* ThumbnailViewController.m */,
 				580103591A8DA44000FC45A0 /* Document.h */,
 				5801035A1A8DA44000FC45A0 /* Document.m */,
 				5801035C1A8DA44000FC45A0 /* Document.xib */,
@@ -276,6 +282,7 @@
 				58DFF8671A91613800C8BFA6 /* Slide.m in Sources */,
 				58DFF85F1A913B1400C8BFA6 /* WKTTableRow.m in Sources */,
 				580103561A8DA44000FC45A0 /* AppDelegate.m in Sources */,
+				58FCCD4B1A9A7621006262AA /* ThumbnailViewController.m in Sources */,
 				58C093F81A8E862900F1F964 /* SlideElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +298,7 @@
 				58C093F01A8E849600F1F964 /* SlideRenderer.m in Sources */,
 				580103721A8DA44100FC45A0 /* Sermon_Slide_GeneratorTests.m in Sources */,
 				58DFF8641A91613800C8BFA6 /* Sermon.m in Sources */,
+				58FCCD4C1A9A7621006262AA /* ThumbnailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
