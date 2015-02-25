@@ -436,6 +436,7 @@
 		CGFloat textLineSpacing = 1.0;
 		BOOL shouldAutosizeText = NO;
 		NSString * textToRender = element.textValue;
+		if (!textToRender) textToRender = @"";
 
 		if (element.fontName)
 		{
