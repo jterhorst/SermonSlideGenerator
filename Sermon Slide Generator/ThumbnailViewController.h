@@ -10,10 +10,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class Document;
+@class WKCollectionView;
 
 @interface ThumbnailViewController : NSObject <NSCollectionViewDelegate>
 
-@property (nonatomic, weak) IBOutlet NSCollectionView * thumbnailCollectionView;
+@property (nonatomic, weak) IBOutlet WKCollectionView * collectionView;
 @property (nonatomic, weak) IBOutlet Document * document;
 
 - (void)reloadData;

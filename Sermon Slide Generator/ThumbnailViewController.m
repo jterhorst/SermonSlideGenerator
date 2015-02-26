@@ -16,22 +16,16 @@
 #import "SlideContainer.h"
 #import "SlideElement.h"
 
+#import "WKCollectionView.h"
+
 @implementation ThumbnailViewController
 
-- (void)setThumbnailCollectionView:(NSCollectionView *)thumbnailCollectionView
-{
-	_thumbnailCollectionView = thumbnailCollectionView;
-	_thumbnailCollectionView.delegate = self;
-
-	[_thumbnailCollectionView setMaxNumberOfColumns:4];
-
-	[self reloadData];
-}
 
 - (void)reloadData
 {
-	[_thumbnailCollectionView setBackgroundColors:@[[NSColor grayColor],[NSColor whiteColor]]];
-
+	[_collectionView reloadData];
+	
+	/*
 	NSMutableArray * contentItems = [NSMutableArray array];
 	SlideRenderer * renderer = [[SlideRenderer alloc] init];
 
@@ -46,8 +40,40 @@
 
 		item.imageView.image = [renderer imageMaskForSlideContainer:container renderSize:CGSizeMake(1280, 1020)];
 	}
+	*/
+}
 
-	[_thumbnailCollectionView setContent:contentItems];
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(WKCollectionView *)view
+{
+	return 1;
+}
+
+- (NSInteger)collectionView:(WKCollectionView *)view numberOfItemsInSection:(NSInteger)section;
+{
+	return [[_document.sermonContainer slides] count];
+}
+
+- (NSString *)collectionView:(WKCollectionView *)view titleForHeaderInSection:(NSInteger)section
+{
+	return @"";
+}
+
+- (NSImage *)imageForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view
+{
+	SlideRenderer * renderer = [[SlideRenderer alloc] init];
+	NSArray * slidesArray = [self _slideElementsForSlide:[[_document.sermonContainer orderedSlides] objectAtIndex:cellIndex]];
+
+	SlideContainer * container = [[SlideContainer alloc] init];
+	container.slideElements = slidesArray;
+
+	return [renderer imageForSlideContainer:container renderSize:CGSizeMake(320, 240)];
+}
+
+- (NSString *)titleForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view
+{
+	return @"";//[[[_document.sermonContainer orderedSlides] objectAtIndex:cellIndex] label];
 }
 
 
