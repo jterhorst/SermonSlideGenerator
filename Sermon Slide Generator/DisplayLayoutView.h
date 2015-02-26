@@ -7,6 +7,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+NSString * DisplayLayoutViewModeChangedNotificationName;
+
 @interface DisplayLayoutView : NSView
 
 @end

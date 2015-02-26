@@ -39,34 +39,19 @@
 		[self addSubview:_displayPopup];
 		_displayPopup.autoresizingMask = NSViewMaxYMargin|NSViewWidthSizable;
 
-		[_displayPopup addItemsWithTitles:@[@"None", @"Stage", @"Normal"]];
+		[_displayPopup addItemsWithTitles:@[@"None", @"Mask", @"Normal"]];
 		[_displayPopup setTarget:self];
 		[_displayPopup setAction:@selector(popoverChanged:)];
 
+		NSUInteger selectionIndex = 2;
 		if ([[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)_screenIndex]])
 		{
-			NSUInteger selectionIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)_screenIndex]] integerValue];
-			if ([_displayPopup indexOfSelectedItem] != selectionIndex)
-			{
-				[_displayPopup selectItemAtIndex:selectionIndex];
-			}
+			selectionIndex = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%lu", (unsigned long)_screenIndex]] integerValue];
 		}
-		else
-		{
-			NSUInteger selectionIndex = 2;
-			if (_screenIndex == 0)
-			{
-				selectionIndex = 0;
-			}
-			else if (_screenIndex == 1)
-			{
-				selectionIndex = 1;
-			}
 
-			if ([_displayPopup indexOfSelectedItem] != selectionIndex)
-			{
-				[_displayPopup selectItemAtIndex:selectionIndex];
-			}
+		if ([_displayPopup indexOfSelectedItem] != selectionIndex)
+		{
+			[_displayPopup selectItemAtIndex:selectionIndex];
 		}
 	}
 	return self;
@@ -79,6 +64,8 @@
 	NSLog(@"popover changed: %lu for screen %lu", (unsigned long)selectionIndex, (unsigned long)_screenIndex);
 
 	[[NSUserDefaults standardUserDefaults] setObject:@(selectionIndex) forKey:[NSString stringWithFormat:@"%lu", (unsigned long)_screenIndex]];
+
+	[[NSNotificationCenter defaultCenter] postNotificationName:DisplayLayoutViewModeChangedNotificationName object:nil];
 }
 
 @end
@@ -311,3 +298,5 @@
 }
 
 @end
+
+NSString * DisplayLayoutViewModeChangedNotificationName  = @"DisplayLayoutViewModeChanged";
