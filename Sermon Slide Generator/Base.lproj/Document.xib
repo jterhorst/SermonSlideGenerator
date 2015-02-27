@@ -278,10 +278,20 @@
                                     <rect key="frame" x="1" y="1" width="166" height="79"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3iA-9g-cGR" customClass="WKCollectionView">
-                                            <rect key="frame" x="0.0" y="0.0" width="166" height="79"/>
+                                        <view misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3iA-9g-cGR" customClass="WKCollectionView">
+                                            <rect key="frame" x="0.0" y="620" width="328" height="698"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="194-ff-6um" id="Afr-i9-4MO"/>
+                                                <outlet property="delegate" destination="194-ff-6um" id="C5P-Ee-eJS"/>
+                                            </connections>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="3iA-9g-cGR" secondAttribute="bottom" id="BC8-q8-GGE"/>
+                                        <constraint firstItem="3iA-9g-cGR" firstAttribute="leading" secondItem="Nwp-iS-JSv" secondAttribute="leading" id="GrY-Wu-RlX"/>
+                                        <constraint firstItem="3iA-9g-cGR" firstAttribute="top" secondItem="Nwp-iS-JSv" secondAttribute="top" constant="1" id="lXK-03-c3f"/>
+                                        <constraint firstAttribute="trailing" secondItem="3iA-9g-cGR" secondAttribute="trailing" constant="4" id="yaQ-fZ-5i5"/>
+                                    </constraints>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="XXi-ko-Je1">
                                     <rect key="frame" x="1" y="80" width="166" height="15"/>
@@ -329,6 +339,7 @@
         <collectionViewItem id="srd-ck-gkR"/>
         <customObject id="194-ff-6um" customClass="ThumbnailViewController">
             <connections>
+                <outlet property="delegate" destination="-2" id="F6d-Ch-UIh"/>
                 <outlet property="document" destination="-2" id="lm6-Hk-zLj"/>
             </connections>
         </customObject>

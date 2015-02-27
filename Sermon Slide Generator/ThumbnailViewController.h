@@ -12,7 +12,15 @@
 @class Document;
 @class WKCollectionView;
 
+@protocol ThumbnailViewControllerDelegate <NSObject>
+@required
+- (CGFloat)aspectRatioForThumbnails;
+
+@end
+
 @interface ThumbnailViewController : NSObject <NSCollectionViewDelegate>
+
+@property (nonatomic, weak) IBOutlet id<ThumbnailViewControllerDelegate> delegate;
 
 @property (nonatomic, weak) IBOutlet WKCollectionView * collectionView;
 @property (nonatomic, weak) IBOutlet Document * document;

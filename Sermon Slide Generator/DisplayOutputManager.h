@@ -12,6 +12,8 @@
 
 @interface DisplayOutputManager : NSObject
 
+- (CGFloat)outputAspectRatio;
+
 - (void)displaySlideForContainer:(SlideContainer *)container;
 
 @end

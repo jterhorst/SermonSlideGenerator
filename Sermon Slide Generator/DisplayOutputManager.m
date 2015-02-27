@@ -92,6 +92,16 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (CGFloat)outputAspectRatio
+{
+    if ([_outputWindows firstObject])
+    {
+        return [[_outputWindows firstObject] frame].size.width / [[_outputWindows firstObject] frame].size.height;
+    }
+    
+    return 16/9;
+}
+
 - (void)_updateScreens
 {
 	for (OutputWindow * win in _outputWindows)

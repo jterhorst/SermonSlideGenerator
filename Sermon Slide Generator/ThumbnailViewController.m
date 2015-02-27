@@ -68,7 +68,7 @@
 	SlideContainer * container = [[SlideContainer alloc] init];
 	container.slideElements = slidesArray;
 
-	return [renderer imageForSlideContainer:container renderSize:CGSizeMake(320, 240)];
+	return [renderer imageForSlideContainer:container renderSize:CGSizeMake(320, 320 / [self.delegate aspectRatioForThumbnails])];
 }
 
 - (NSString *)titleForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view

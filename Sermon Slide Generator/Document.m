@@ -10,12 +10,13 @@
 
 #import "DisplayOutputManager.h"
 
+#import "ThumbnailViewController.h"
 #import "Slide.h"
 #import "SlideRenderer.h"
 #import "SlideContainer.h"
 #import "SlideElement.h"
 
-@interface Document () <NSTableViewDataSource, NSTableViewDelegate>
+@interface Document () <NSTableViewDataSource, NSTableViewDelegate, ThumbnailViewControllerDelegate>
 {
 	DisplayOutputManager * _outputManager;
 }
@@ -121,7 +122,10 @@
 	}
 }
 
-
+- (CGFloat)aspectRatioForThumbnails
+{
+    return [_outputManager outputAspectRatio];
+}
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
