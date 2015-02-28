@@ -43,7 +43,10 @@
 	*/
 }
 
-
+- (CGFloat)aspectRatioForCellsInCollectionView:(WKCollectionView *)view
+{
+	return [self.delegate aspectRatioForThumbnails];
+}
 
 - (NSInteger)numberOfSectionsInCollectionView:(WKCollectionView *)view
 {

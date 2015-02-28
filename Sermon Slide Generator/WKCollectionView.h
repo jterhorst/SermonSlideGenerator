@@ -15,6 +15,8 @@
 
 @protocol WKCollectionViewDatasource <NSObject>
 
+- (CGFloat)aspectRatioForCellsInCollectionView:(WKCollectionView *)view;
+
 - (NSInteger)numberOfSectionsInCollectionView:(WKCollectionView *)view;
 
 - (NSInteger)collectionView:(WKCollectionView *)view numberOfItemsInSection:(NSInteger)section;

@@ -191,6 +191,11 @@
 
 - (CGFloat)_currentAspectRatio
 {
+	if ([self.dataSource respondsToSelector:@selector(aspectRatioForCellsInCollectionView:)])
+	{
+		return [self.dataSource aspectRatioForCellsInCollectionView:self];
+	}
+
 	return 16.0f / 9.0f;
 }
 
@@ -200,7 +205,7 @@
 
 	CGFloat height = _cellSizeWidth / ratio;
 
-	return CGSizeMake(_cellSizeWidth, height + 22);
+	return CGSizeMake(_cellSizeWidth, height );
 }
 
 - (NSInteger)numberOfSubCellsPerRow;

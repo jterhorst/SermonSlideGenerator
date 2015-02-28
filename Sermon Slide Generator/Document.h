@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Sermon.h"
+#import "ThumbnailViewController.h"
 
 @interface Document : NSPersistentDocument
 
 @property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
 @property (nonatomic, strong) Sermon * sermonContainer;
+@property (nonatomic, weak) IBOutlet ThumbnailViewController * thumbnailController;
 
 - (IBAction)addSlide:(id)sender;
 

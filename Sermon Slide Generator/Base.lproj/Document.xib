@@ -10,6 +10,7 @@
                 <outlet property="sermonObjectController" destination="Jld-Ui-N2f" id="AIS-oc-0lP"/>
                 <outlet property="slidesArrayController" destination="5Fi-vs-zU5" id="suQ-gA-VQE"/>
                 <outlet property="slidesTable" destination="dnR-oU-TSK" id="jfP-cT-Hba"/>
+                <outlet property="thumbnailController" destination="194-ff-6um" id="Myk-HH-a2e"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
