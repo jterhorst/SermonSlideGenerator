@@ -191,7 +191,7 @@
 
 - (CGFloat)_currentAspectRatio
 {
-	return 16 / 9;
+	return 16.0f / 9.0f;
 }
 
 - (CGSize)_sizeForCells
