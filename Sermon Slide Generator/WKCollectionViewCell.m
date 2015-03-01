@@ -45,7 +45,7 @@
 {
 	[super drawRect:dirtyRect];
 	
-    [[NSColor blackColor] set];
+    [[NSColor grayColor] set];
 	[[NSBezierPath bezierPathWithRect:[self bounds]] fill];
 }
 
