@@ -24,29 +24,10 @@
 - (void)reloadData
 {
 	[_collectionView reloadData];
-	
-	/*
-	NSMutableArray * contentItems = [NSMutableArray array];
-	SlideRenderer * renderer = [[SlideRenderer alloc] init];
-
-	for (Slide * slide in [_document.sermonContainer orderedSlides])
-	{
-		NSCollectionViewItem * item = [[NSCollectionViewItem alloc] init];
-
-		NSArray * slidesArray = [self _slideElementsForSlide:slide];
-
-		SlideContainer * container = [[SlideContainer alloc] init];
-		container.slideElements = slidesArray;
-
-		item.imageView.image = [renderer imageMaskForSlideContainer:container renderSize:CGSizeMake(1280, 1020)];
-	}
-	*/
 }
 
 - (void)clickOnCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 {
-	NSLog(@"clicked slide %d", cellIndex);
-
 	[self.delegate userClickedCellAtIndex:cellIndex];
 }
 
@@ -146,6 +127,5 @@
 	}
 	return slideElements;
 }
-
 
 @end

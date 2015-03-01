@@ -21,10 +21,7 @@
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 
 	CGContextSaveGState(context);
-
-//	CGContextTranslateCTM(context, 0, renderSize.height);
-//	CGContextScaleCTM(context, 1.0, -1.0);
-
+	
 	CGContextSetFillColorWithColor(context, [NSColor blackColor].CGColor);
 	// over-fill with black (to bleed and avoid 1px lines around the edge
 	CGContextFillRect(context, CGRectMake(0, 0, renderSize.width * 2, renderSize.height * 2));
@@ -72,10 +69,6 @@
 		}
 		else if (thumbnailRatio > targetRatio) // if thumbnail frame is wider than video
 		{
-			//float diffRatio = targetSize.height / thumbnailSize.height;
-
-			//NSLog(@"(wide) diff: %f", diffRatio);
-
 			targetSize.height = renderSize.height;
 			targetSize.width = targetSize.height * targetRatio;
 
@@ -83,11 +76,7 @@
 		}
 		else // if thumbnail frame is narrower than video
 		{
-			//float diffRatio = targetSize.width / thumbnailSize.width;
-
 			targetRatio = targetSize.height / targetSize.width;
-
-			//NSLog(@"(narrow) diff: %f", diffRatio);
 
 			targetSize.width = renderSize.width;
 			targetSize.height = targetSize.width * targetRatio;
@@ -105,14 +94,7 @@
 		source = CGImageSourceCreateWithData((CFDataRef)[elementImage TIFFRepresentation], NULL);
 		CGImageRef maskRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
 
-//		CGContextSaveGState(context);
-//
-//		CGContextTranslateCTM(context, 0, renderSize.height);
-//		CGContextScaleCTM(context, 1.0, -1.0);
-
 		CGContextDrawImage(context, CGRectMake(renderOffset.x, renderOffset.y, targetSize.width, targetSize.height), maskRef);
-
-//		CGContextRestoreGState(context);
 
 		return targetSize;
 	}
@@ -150,7 +132,7 @@
 		}
 
 		CGFloat marginTop = 5;
-		CGFloat marginBottom = 5 + bottomOffset;
+		CGFloat marginBottom = 5;
 		CGFloat marginLeft = 5;
 		CGFloat marginRight = 5;
 
@@ -173,6 +155,12 @@
 		float convertedMarginBottom = [self actualPixelHeightForMarginHeight:marginBottom atSize:renderSize];
 		float convertedMarginLeft = [self actualPixelWidthForMarginWidth:marginLeft atSize:renderSize];
 		float convertedMarginRight = [self actualPixelWidthForMarginWidth:marginRight atSize:renderSize];
+
+		if (bottomOffset > 0)
+		{
+			convertedMarginBottom += bottomOffset;
+			convertedMarginBottom += 7;
+		}
 
 
 		CGRect convertedMarginRect = CGRectMake(convertedMarginLeft, convertedMarginTop, renderSize.width - convertedMarginLeft - convertedMarginRight, renderSize.height - convertedMarginTop - convertedMarginBottom);
@@ -297,7 +285,7 @@
 		
 		CFRelease(paragraphStyle);
 
-		return CGSizeMake(frameSize.width, (frameSize.height / 2));
+		return CGSizeMake(frameSize.width, frameSize.height);
 	}
 
 	return CGSizeZero;
@@ -312,9 +300,6 @@
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 
 	CGContextSaveGState(context);
-
-	//	CGContextTranslateCTM(context, 0, renderSize.height);
-	//	CGContextScaleCTM(context, 1.0, -1.0);
 
 	CGContextSetFillColorWithColor(context, [NSColor blackColor].CGColor);
 	// over-fill with black (to bleed and avoid 1px lines around the edge
@@ -363,10 +348,6 @@
 		}
 		else if (thumbnailRatio > targetRatio) // if thumbnail frame is wider than video
 		{
-			//float diffRatio = targetSize.height / thumbnailSize.height;
-
-			//NSLog(@"(wide) diff: %f", diffRatio);
-
 			targetSize.height = renderSize.height;
 			targetSize.width = targetSize.height * targetRatio;
 
@@ -374,11 +355,7 @@
 		}
 		else // if thumbnail frame is narrower than video
 		{
-			//float diffRatio = targetSize.width / thumbnailSize.width;
-
 			targetRatio = targetSize.height / targetSize.width;
-
-			//NSLog(@"(narrow) diff: %f", diffRatio);
 
 			targetSize.width = renderSize.width;
 			targetSize.height = targetSize.width * targetRatio;
@@ -390,26 +367,10 @@
 		renderOffset.y = renderOffset.y - 1;
 		targetSize.width = targetSize.width + 2;
 		targetSize.height = targetSize.height + 2;
-//
-//		CGImageSourceRef source;
-//
-//		source = CGImageSourceCreateWithData((CFDataRef)[elementImage TIFFRepresentation], NULL);
-//		CGImageRef maskRef =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
-
-		//		CGContextSaveGState(context);
-		//
-		//		CGContextTranslateCTM(context, 0, renderSize.height);
-		//		CGContextScaleCTM(context, 1.0, -1.0);
-
-
 
 		CGContextSetFillColorWithColor(context, [NSColor whiteColor].CGColor);
 		// fill entire area with white
 		CGContextFillRect(context, CGRectMake(0, 0, renderSize.width, renderSize.height));
-
-		//CGContextDrawImage(context, CGRectMake(renderOffset.x, renderOffset.y, targetSize.width, targetSize.height), maskRef);
-
-		//		CGContextRestoreGState(context);
 
 		return targetSize;
 	}
@@ -448,7 +409,7 @@
 		}
 
 		CGFloat marginTop = 5;
-		CGFloat marginBottom = 5 + bottomOffset;
+		CGFloat marginBottom = 5;
 		CGFloat marginLeft = 5;
 		CGFloat marginRight = 5;
 
@@ -472,6 +433,11 @@
 		float convertedMarginLeft = [self actualPixelWidthForMarginWidth:marginLeft atSize:renderSize];
 		float convertedMarginRight = [self actualPixelWidthForMarginWidth:marginRight atSize:renderSize];
 
+		if (bottomOffset > 0)
+		{
+			convertedMarginBottom += bottomOffset;
+			convertedMarginBottom += 7;
+		}
 
 		CGRect convertedMarginRect = CGRectMake(convertedMarginLeft, convertedMarginTop, renderSize.width - convertedMarginLeft - convertedMarginRight, renderSize.height - convertedMarginTop - convertedMarginBottom);
 		if (convertedMarginRect.origin.x > convertedMarginRect.origin.x + convertedMarginRect.size.width)
@@ -595,7 +561,7 @@
 		
 		CFRelease(paragraphStyle);
 		
-		return CGSizeMake(frameSize.width, (frameSize.height / 2));
+		return CGSizeMake(frameSize.width, frameSize.height);
 	}
 	
 	return CGSizeZero;

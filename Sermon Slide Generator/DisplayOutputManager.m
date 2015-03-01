@@ -27,7 +27,7 @@
 {
 	_screenIndex = screenIndex;
 	NSScreen * selectedScreen = [NSScreen mainScreen];
-	NSRect screenRect = NSMakeRect(20, 20, 320, 240);
+	NSRect screenRect = NSMakeRect(20, 20, 640, 480);
 	if (screenIndex > 0 && screenIndex < [[NSScreen screens] count])
 	{
 		selectedScreen = [[NSScreen screens] objectAtIndex:screenIndex];
