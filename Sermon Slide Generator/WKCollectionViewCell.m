@@ -2,6 +2,14 @@
 
 #import "WKCollectionViewCell.h"
 
+#import "WKCollectionSectionView.h"
+
+@interface WKCollectionViewCell ()
+{
+	BOOL _wasClicked;
+}
+@end
+
 @implementation WKCollectionViewCell
 
 - (id)initWithFrame:(NSRect)frame
@@ -23,6 +31,8 @@
 		[self addSubview:self.titleLabel];
 
 
+		_wasClicked = NO;
+
 		self.thumbnailImageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 22, frame.size.width, frame.size.height - 22)];
 		[self.thumbnailImageView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 
@@ -37,6 +47,33 @@
 	
     [[NSColor blackColor] set];
 	[[NSBezierPath bezierPathWithRect:[self bounds]] fill];
+}
+
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+	_wasClicked = YES;
+
+	[self setNeedsDisplayInRect:[self bounds]];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+	_wasClicked = NO;
+
+	[self setNeedsDisplayInRect:[self bounds]];
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+	if (_wasClicked)
+	{
+		[self.sectionView collectionCellWasClicked:self];
+	}
+
+	_wasClicked = NO;
+
+	[self setNeedsDisplayInRect:[self bounds]];
 }
 
 @end

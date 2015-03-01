@@ -9,7 +9,7 @@
 
 @protocol WKCollectionViewDelegate <NSObject>
 
-
+- (void)clickOnCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 
 @end
 
@@ -24,6 +24,7 @@
 
 - (NSImage *)imageForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 - (NSString *)titleForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
+
 
 @end
 

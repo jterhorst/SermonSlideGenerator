@@ -15,7 +15,7 @@
 @protocol ThumbnailViewControllerDelegate <NSObject>
 @required
 - (CGFloat)aspectRatioForThumbnails;
-
+- (void)userClickedCellAtIndex:(NSInteger)cellIndex;
 @end
 
 @interface ThumbnailViewController : NSObject <NSCollectionViewDelegate>

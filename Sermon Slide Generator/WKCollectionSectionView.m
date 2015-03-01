@@ -50,6 +50,13 @@
 	[self _layoutCells];
 }
 
+- (void)collectionCellWasClicked:(WKCollectionViewCell *)cell
+{
+	NSInteger cellIndex = [_sectionCells indexOfObject:cell];
+
+	[self.delegate clickOnCellAtIndex:cellIndex inSectionView:self];
+}
+
 - (WKCollectionViewCell *)_cellForIndex:(NSInteger)cellIndex
 {
 	if (!_sectionCells)
@@ -71,6 +78,7 @@
 	{
 		cell = [[WKCollectionViewCell alloc] initWithFrame:NSMakeRect(0, 0, [self.delegate sizeForCellAtIndex:cellIndex inSectionView:self].width, [self.delegate sizeForCellAtIndex:cellIndex inSectionView:self].height)];
 		cell.cellIndex = cellIndex;
+		cell.sectionView = self;
 
 		[_sectionCells addObject:cell];
 	}

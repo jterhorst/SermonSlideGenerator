@@ -160,6 +160,13 @@
 	return [self.dataSource titleForCellAtIndex:cellIndex section:view.sectionIndex inView:self];
 }
 
+- (void)clickOnCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
+{
+	NSInteger sectionIndex = [_sectionViews indexOfObject:view];
+
+	[self.delegate clickOnCellAtIndex:cellIndex section:sectionIndex inView:self];
+}
+
 - (WKCollectionSectionView *)_sectionViewForIndex:(NSInteger)section
 {
 	WKCollectionSectionView * sectionView = nil;

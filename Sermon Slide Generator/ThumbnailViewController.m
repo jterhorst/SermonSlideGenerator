@@ -43,6 +43,13 @@
 	*/
 }
 
+- (void)clickOnCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
+{
+	NSLog(@"clicked slide %d", cellIndex);
+
+	[self.delegate userClickedCellAtIndex:cellIndex];
+}
+
 - (CGFloat)aspectRatioForCellsInCollectionView:(WKCollectionView *)view
 {
 	return [self.delegate aspectRatioForThumbnails];

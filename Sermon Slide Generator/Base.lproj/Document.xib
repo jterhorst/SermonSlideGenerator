@@ -18,11 +18,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="213" y="92" width="1339" height="759"/>
+            <rect key="contentRect" x="-59" y="18" width="1085" height="700"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <value key="minSize" type="size" width="94" height="86"/>
+            <value key="minSize" type="size" width="1000" height="700"/>
             <view key="contentView" id="gIp-Ho-8D9">
-                <rect key="frame" x="0.0" y="0.0" width="1339" height="759"/>
+                <rect key="frame" x="0.0" y="0.0" width="1085" height="700"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hZa-jv-o4z">
@@ -39,10 +39,10 @@
                         </connections>
                     </button>
                     <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-cO-4VF">
-                        <rect key="frame" x="-1" y="60" width="1345" height="699"/>
+                        <rect key="frame" x="-1" y="60" width="1091" height="640"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="UTd-uK-8TY">
-                                <rect key="frame" x="0.0" y="0.0" width="264" height="699"/>
+                                <rect key="frame" x="0.0" y="0.0" width="264" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="FsE-6l-dEw">
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
@@ -106,7 +106,7 @@
                                 </scroller>
                             </scrollView>
                             <customView id="tBv-lm-A9Q">
-                                <rect key="frame" x="265" y="0.0" width="747" height="699"/>
+                                <rect key="frame" x="265" y="0.0" width="347" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-or-Grs">
@@ -124,7 +124,7 @@
                                         </connections>
                                     </button>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tTh-6T-k9C">
-                                        <rect key="frame" x="210" y="17" width="329" height="230"/>
+                                        <rect key="frame" x="10" y="17" width="329" height="230"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="tTh-6T-k9C" secondAttribute="height" multiplier="323:224" id="a3l-7L-JEa"/>
                                             <constraint firstAttribute="height" constant="224" id="rvK-V7-Q7Z"/>
@@ -132,7 +132,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="ffd-ve-XnB"/>
                                     </imageView>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-sJ-Hcb">
-                                        <rect key="frame" x="18" y="655" width="711" height="26"/>
+                                        <rect key="frame" x="18" y="596" width="311" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fOk-WK-igK"/>
                                         </constraints>
@@ -158,7 +158,7 @@
                                         </connections>
                                     </popUpButton>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Cz-7i-dR8">
-                                        <rect key="frame" x="18" y="330" width="708" height="17"/>
+                                        <rect key="frame" x="18" y="330" width="308" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="dKc-el-3cB"/>
                                         </constraints>
@@ -172,7 +172,7 @@
                                         </connections>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KCs-VJ-A3d">
-                                        <rect key="frame" x="20" y="252" width="706" height="22"/>
+                                        <rect key="frame" x="20" y="252" width="306" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="ar2-QY-hwl"/>
                                         </constraints>
@@ -193,7 +193,7 @@
                                         </connections>
                                     </textField>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQU-Ij-Bz7">
-                                        <rect key="frame" x="20" y="418" width="706" height="220"/>
+                                        <rect key="frame" x="20" y="418" width="306" height="161"/>
                                         <clipView key="contentView" id="EgT-KT-DaQ">
                                             <rect key="frame" x="1" y="1" width="223" height="133"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,10 +202,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="223" height="218"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="704" height="218"/>
+                                                    <size key="minSize" width="304" height="159"/>
                                                     <size key="maxSize" width="893" height="10000000"/>
                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="704" height="218"/>
+                                                    <size key="minSize" width="304" height="159"/>
                                                     <size key="maxSize" width="893" height="10000000"/>
                                                     <connections>
                                                         <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.text" id="6qY-HE-Vb6">
@@ -229,7 +229,7 @@
                                         </scroller>
                                     </scrollView>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yaX-Ob-hU7">
-                                        <rect key="frame" x="20" y="388" width="706" height="22"/>
+                                        <rect key="frame" x="20" y="388" width="306" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="h1D-J1-V91"/>
                                         </constraints>
@@ -273,14 +273,14 @@
                                 </constraints>
                             </customView>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="5OF-gQ-SpR">
-                                <rect key="frame" x="1013" y="0.0" width="332" height="699"/>
+                                <rect key="frame" x="613" y="0.0" width="478" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="Nwp-iS-JSv">
                                     <rect key="frame" x="1" y="1" width="166" height="79"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3iA-9g-cGR" customClass="WKCollectionView">
-                                            <rect key="frame" x="0.0" y="620" width="328" height="698"/>
+                                        <view translatesAutoresizingMaskIntoConstraints="NO" id="3iA-9g-cGR" customClass="WKCollectionView">
+                                            <rect key="frame" x="0.0" y="0.0" width="474" height="639"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="194-ff-6um" id="Afr-i9-4MO"/>
                                                 <outlet property="delegate" destination="194-ff-6um" id="C5P-Ee-eJS"/>
@@ -298,7 +298,7 @@
                                     <rect key="frame" x="1" y="80" width="166" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uui-lV-cEs">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="uui-lV-cEs">
                                     <rect key="frame" x="167" y="1" width="15" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -323,7 +323,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
-            <point key="canvasLocation" x="756.5" y="580.5"/>
+            <point key="canvasLocation" x="798.5" y="580.5"/>
         </window>
         <arrayController mode="entity" entityName="Slide" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="5Fi-vs-zU5">
             <connections>

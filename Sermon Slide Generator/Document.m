@@ -143,14 +143,18 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-	NSArray * slidesArray = [self _slideElementsForSlide:[[_sermonContainer orderedSlides] objectAtIndex:_slidesTable.selectedRow]];
+
+}
+
+- (void)userClickedCellAtIndex:(NSInteger)cellIndex
+{
+	NSArray * slidesArray = [self _slideElementsForSlide:[[_sermonContainer orderedSlides] objectAtIndex:cellIndex]];
 
 	SlideContainer * container = [[SlideContainer alloc] init];
 	container.slideElements = slidesArray;
 
 	[_outputManager displaySlideForContainer:container];
 }
-
 
 - (NSArray *)_slideElementsForSlide:(Slide *)slide
 {

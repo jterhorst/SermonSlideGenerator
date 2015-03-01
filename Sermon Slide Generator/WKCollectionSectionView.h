@@ -19,6 +19,8 @@
 - (NSImage *)imageForCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
 - (NSString *)titleForCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
 
+- (void)clickOnCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
+
 @end
 
 @interface WKCollectionSectionView : NSView
@@ -30,5 +32,7 @@
 @property (nonatomic, assign) NSInteger sectionIndex;
 
 @property (nonatomic, strong) NSTextField * titleLabel;
+
+- (void)collectionCellWasClicked:(WKCollectionViewCell *)cell;
 
 @end
