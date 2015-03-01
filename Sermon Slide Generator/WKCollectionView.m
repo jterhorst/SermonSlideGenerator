@@ -1,15 +1,13 @@
 
-
 #import "WKCollectionView.h"
-
 
 @interface WKCollectionView ()
 {
 	NSMutableArray * _sectionViews;
+	NSIndexPath * _activeCell;
 }
 
 @end
-
 
 @implementation WKCollectionView
 
@@ -130,6 +128,13 @@
 	}
 }
 
+- (NSArray *)indexPathsForSelectedCellsInCollectionView:(WKCollectionView *)view
+{
+	if (_activeCell) return @[_activeCell];
+
+	return @[];
+}
+
 - (NSString *)titleForSectionView:(WKCollectionSectionView *)view;
 {
 	return [self.dataSource collectionView:self titleForHeaderInSection:view.sectionIndex];
@@ -163,6 +168,8 @@
 - (void)clickOnCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
 {
 	NSInteger sectionIndex = [_sectionViews indexOfObject:view];
+
+	_activeCell = [[NSIndexPath indexPathWithIndex:sectionIndex] indexPathByAddingIndex:cellIndex];
 
 	[self.delegate clickOnCellAtIndex:cellIndex section:sectionIndex inView:self];
 }

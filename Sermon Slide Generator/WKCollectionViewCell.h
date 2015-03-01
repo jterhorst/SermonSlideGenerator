@@ -13,4 +13,6 @@
 
 @property (nonatomic, weak) WKCollectionSectionView * sectionView;
 
+@property (nonatomic, assign) BOOL selected;
+
 @end
