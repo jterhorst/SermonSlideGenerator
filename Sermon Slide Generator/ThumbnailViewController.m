@@ -51,15 +51,25 @@
 	return @"";
 }
 
+- (NSArray *)_generatedSlides
+{
+	NSMutableArray * slides = [NSMutableArray array];
+
+	for (NSInteger iterator = 0; iterator < [[_document.sermonContainer slides] count]; iterator++)
+	{
+		[slides addObjectsFromArray:[self _slideContainersForSlide:[[_document.sermonContainer orderedSlides] objectAtIndex:iterator]]];
+	}
+
+	return [NSArray arrayWithArray:slides];
+}
+
 - (NSImage *)imageForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view
 {
 	SlideRenderer * renderer = [[SlideRenderer alloc] init];
-	NSArray * slidesArray = [self _slideElementsForSlide:[[_document.sermonContainer orderedSlides] objectAtIndex:cellIndex]];
 
-	SlideContainer * container = [[SlideContainer alloc] init];
-	container.slideElements = slidesArray;
+	SlideContainer * container = [[self _generatedSlides] objectAtIndex:cellIndex];
 
-	return [renderer imageForSlideContainer:container renderSize:CGSizeMake(320, 320 / [self.delegate aspectRatioForThumbnails])];
+	return [renderer imageForSlideContainer:container renderSize:CGSizeMake(320, 320 / [self.delegate aspectRatioForThumbnails]) mask:NO];
 }
 
 - (NSString *)titleForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view
@@ -68,20 +78,25 @@
 }
 
 
-- (NSArray *)_slideElementsForSlide:(Slide *)slide
+- (NSArray *)_slideContainersForSlide:(Slide *)slide
 {
-	NSMutableArray * slideElements = [NSMutableArray array];
+	NSMutableArray * slideContainers = [NSMutableArray array];
 	if (slide.type == SlideTypeMedia)
 	{
 		SlideElement * element = [[SlideElement alloc] init];
 		element.verticalAlignment = SlideVerticalAlignmentMiddle;
 		element.elementType = SlideElementTypeImage;
 		element.imageFilePath = slide.mediaPath;
-		[slideElements addObject:element];
+
+		SlideContainer * container = [[SlideContainer alloc] init];
+		container.slideElements = @[element];
+		[slideContainers addObject:container];
 	}
 	else if (slide.type == SlideTypeBlank)
 	{
-		return slideElements;
+		SlideContainer * container = [[SlideContainer alloc] init];
+
+		return @[container];
 	}
 	else if (slide.type == SlideTypeTitle)
 	{
@@ -92,7 +107,10 @@
 		element.elementType = SlideElementTypeText;
 		element.fontName = @"MyriadPro-Bold";
 		element.fontSize = 45;
-		[slideElements addObject:element];
+
+		SlideContainer * container = [[SlideContainer alloc] init];
+		container.slideElements = @[element];
+		[slideContainers addObject:container];
 	}
 	else if (slide.type == SlideTypePoint)
 	{
@@ -103,29 +121,72 @@
 		element.elementType = SlideElementTypeText;
 		element.fontName = @"MyriadPro-Bold";
 		element.fontSize = 40;
-		[slideElements addObject:element];
+
+		SlideContainer * container = [[SlideContainer alloc] init];
+		container.slideElements = @[element];
+		[slideContainers addObject:container];
 	}
 	else if (slide.type == SlideTypeScripture)
 	{
-		SlideElement * bodyElement = [[SlideElement alloc] init];
-		bodyElement.textValue = slide.text;
-		bodyElement.textAlignment = NSLeftTextAlignment;
-		bodyElement.verticalAlignment = SlideVerticalAlignmentBottom;
-		bodyElement.elementType = SlideElementTypeText;
-		bodyElement.fontName = @"MyriadPro-Bold";
-		bodyElement.fontSize = 40;
-		[slideElements addObject:bodyElement];
+		NSArray * textSlides = [self _splitTextForScriptureSlideText:slide.text];
+		NSLog(@"text slides: %@", textSlides);
 
-		SlideElement * referenceElement = [[SlideElement alloc] init];
-		referenceElement.textValue = slide.reference;
-		referenceElement.textAlignment = NSLeftTextAlignment;
-		referenceElement.verticalAlignment = SlideVerticalAlignmentBottom;
-		referenceElement.elementType = SlideElementTypeText;
-		referenceElement.fontName = @"MyriadPro";
-		referenceElement.fontSize = 40;
-		[slideElements addObject:referenceElement];
+		for (NSString * text in textSlides)
+		{
+			SlideElement * bodyElement = [[SlideElement alloc] init];
+			bodyElement.textValue = text;
+			bodyElement.textAlignment = NSLeftTextAlignment;
+			bodyElement.verticalAlignment = SlideVerticalAlignmentBottom;
+			bodyElement.elementType = SlideElementTypeText;
+			bodyElement.fontName = @"MyriadPro-Bold";
+			bodyElement.fontSize = 40;
+
+			SlideElement * referenceElement = [[SlideElement alloc] init];
+			referenceElement.textValue = slide.reference;
+			referenceElement.textAlignment = NSLeftTextAlignment;
+			referenceElement.verticalAlignment = SlideVerticalAlignmentBottom;
+			referenceElement.elementType = SlideElementTypeText;
+			referenceElement.fontName = @"MyriadPro";
+			referenceElement.fontSize = 40;
+
+			SlideContainer * container = [[SlideContainer alloc] init];
+			container.slideElements = @[bodyElement, referenceElement];
+			[slideContainers addObject:container];
+		}
 	}
-	return slideElements;
+
+	return [NSArray arrayWithArray:slideContainers];
+}
+
+- (NSArray *)_splitTextForScriptureSlideText:(NSString *)slideText
+{
+	SlideRenderer * renderer = [[SlideRenderer alloc] init];
+	NSMutableArray * slides = [NSMutableArray array];
+
+	NSMutableArray * verseComponents = [NSMutableArray arrayWithArray:[slideText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+	while ([verseComponents count] > 0) {
+		NSMutableString * currentSlide = [NSMutableString string];
+
+		while ([verseComponents count] > 0 && [renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.1) {
+			if ([currentSlide length] > 0)
+			{
+				[currentSlide appendString:@" "];
+			}
+			if ([verseComponents firstObject])
+			{
+				[currentSlide appendString:[verseComponents firstObject]];
+			}
+			if ([verseComponents count] > 0)
+				[verseComponents removeObjectAtIndex:0];
+		}
+
+		if ([currentSlide length] > 0)
+		{
+			[slides addObject:currentSlide];
+		}
+	}
+
+	return slides;
 }
 
 @end

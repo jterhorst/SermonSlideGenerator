@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class SlideContainer;
+@class SlideElement;
 
 @interface SlideRenderer : NSObject
-- (NSImage *)imageForSlideContainer:(SlideContainer *)slide renderSize:(CGSize)renderSize;
-- (NSImage *)imageMaskForSlideContainer:(SlideContainer *)slide renderSize:(CGSize)renderSize;
+- (NSImage *)imageForSlideContainer:(SlideContainer *)slide renderSize:(CGSize)renderSize mask:(BOOL)mask;
+- (CGSize)sizeForSlideElement:(SlideElement *)element renderSize:(CGSize)renderSize;
+- (CGSize)sizeForScriptureText:(NSString *)text renderSize:(CGSize)renderSize;
 @end

@@ -99,7 +99,7 @@
         return [[_outputWindows firstObject] frame].size.width / [[_outputWindows firstObject] frame].size.height;
     }
     
-    return 16/9;
+    return 16.0f/9.0f;
 }
 
 - (void)_updateScreens
@@ -132,12 +132,8 @@
 		{
 			OutputWindow * win = [[OutputWindow alloc] initWithScreenIndex:iterator];
 			[win makeKeyAndOrderFront:nil];
-			NSImage * slideImage = [renderer imageForSlideContainer:container renderSize:[win frame].size];
-			if ([win screenMode] == 1)
-			{
-				slideImage = [renderer imageMaskForSlideContainer:container renderSize:[win frame].size];
-			}
-			else if ([win screenMode] == 0)
+			NSImage * slideImage = [renderer imageForSlideContainer:container renderSize:[win frame].size mask:[win screenMode] == 1];
+			if ([win screenMode] == 0)
 			{
 				slideImage = nil;
 			}
@@ -151,12 +147,8 @@
 	{
 		for (OutputWindow * win in _outputWindows)
 		{
-			NSImage * slideImage = [renderer imageForSlideContainer:container renderSize:[win frame].size];
-			if ([win screenMode] == 1)
-			{
-				slideImage = [renderer imageMaskForSlideContainer:container renderSize:[win frame].size];
-			}
-			else if ([win screenMode] == 0)
+			NSImage * slideImage = [renderer imageForSlideContainer:container renderSize:[win frame].size mask:[win screenMode] == 1];
+			if ([win screenMode] == 0)
 			{
 				slideImage = nil;
 			}
