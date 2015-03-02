@@ -23,4 +23,6 @@
 @property (nonatomic, weak) IBOutlet NSObjectController * sermonObjectController;
 @property (nonatomic, weak) IBOutlet NSArrayController * slidesArrayController;
 
+- (NSArray *)generatedSlides;
+
 @end
