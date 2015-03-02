@@ -256,6 +256,11 @@
 
 	NSInteger numberOfSections = [self _numberOfSections];
 
+	for (WKCollectionSectionView * section in _sectionViews)
+	{
+		[section reloadData];
+	}
+
 	NSInteger iterator = 0;
 	for (iterator = 0; iterator < numberOfSections; iterator++)
 	{
@@ -267,6 +272,9 @@
 	[self setFrameSize:resultingSize];
 
 	[self setNeedsLayout:YES];
+	[self setNeedsDisplay:YES];
+
+
 }
 
 @end

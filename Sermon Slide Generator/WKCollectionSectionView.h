@@ -35,4 +35,6 @@
 
 - (void)collectionCellWasClicked:(WKCollectionViewCell *)cell;
 
+- (void)reloadData;
+
 @end

@@ -168,4 +168,21 @@
 	//[[NSBezierPath bezierPathWithRect:[self bounds]] fill];
 }
 
+- (void)reloadData
+{
+	for (WKCollectionViewCell * cell in _sectionCells)
+	{
+		[cell removeFromSuperview];
+	}
+
+	_sectionCells = nil;
+
+	[self.headerView setFrame:NSMakeRect(0, self.bounds.size.height - 22, self.bounds.size.width, 22)];
+
+	if ([self.delegate titleForSectionView:self])
+		[self.titleLabel setStringValue:[self.delegate titleForSectionView:self]];
+
+	[self _layoutCells];
+}
+
 @end

@@ -10,7 +10,7 @@
                 <outlet property="sermonObjectController" destination="Jld-Ui-N2f" id="AIS-oc-0lP"/>
                 <outlet property="slidesArrayController" destination="5Fi-vs-zU5" id="suQ-gA-VQE"/>
                 <outlet property="slidesTable" destination="dnR-oU-TSK" id="jfP-cT-Hba"/>
-                <outlet property="thumbnailController" destination="194-ff-6um" id="Myk-HH-a2e"/>
+                <outlet property="thumbnailController" destination="194-ff-6um" id="e2w-TJ-oo6"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -208,9 +208,8 @@
                                                     <size key="minSize" width="304" height="159"/>
                                                     <size key="maxSize" width="893" height="10000000"/>
                                                     <connections>
-                                                        <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.text" id="6qY-HE-Vb6">
+                                                        <binding destination="5Fi-vs-zU5" name="value" keyPath="selection.text" id="YBT-22-tOb">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 <string key="NSNullPlaceholder">Body text here</string>
                                                             </dictionary>
                                                         </binding>
@@ -340,6 +339,7 @@
         <collectionViewItem id="srd-ck-gkR"/>
         <customObject id="194-ff-6um" customClass="ThumbnailViewController">
             <connections>
+                <outlet property="collectionView" destination="3iA-9g-cGR" id="8dB-qP-JOH"/>
                 <outlet property="delegate" destination="-2" id="F6d-Ch-UIh"/>
                 <outlet property="document" destination="-2" id="lm6-Hk-zLj"/>
             </connections>
