@@ -18,6 +18,13 @@
 
 #import "WKCollectionView.h"
 
+@interface ThumbnailViewController ()
+{
+	NSInteger _selectedCellIndex;
+}
+
+@end
+
 @implementation ThumbnailViewController
 
 
@@ -28,7 +35,9 @@
 
 - (void)clickOnCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 {
+	_selectedCellIndex = cellIndex;
 	[self.delegate userClickedCellAtIndex:cellIndex];
+	[_collectionView reloadData];
 }
 
 - (CGFloat)aspectRatioForCellsInCollectionView:(WKCollectionView *)view
@@ -65,5 +74,14 @@
 	return @"";//[[[_document.sermonContainer orderedSlides] objectAtIndex:cellIndex] label];
 }
 
+- (BOOL)cellSelectionStateAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view
+{
+	if (cellIndex == _selectedCellIndex)
+	{
+		return YES;
+	}
+
+	return NO;
+}
 
 @end

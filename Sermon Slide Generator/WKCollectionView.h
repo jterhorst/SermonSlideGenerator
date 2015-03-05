@@ -25,7 +25,7 @@
 - (NSImage *)imageForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 - (NSString *)titleForCellAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 
-- (NSArray *)indexPathsForSelectedCellsInCollectionView:(WKCollectionView *)view;
+- (BOOL)cellSelectionStateAtIndex:(NSInteger)cellIndex section:(NSInteger)section inView:(WKCollectionView *)view;
 
 @end
 

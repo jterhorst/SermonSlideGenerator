@@ -174,6 +174,13 @@
 	[self.delegate clickOnCellAtIndex:cellIndex section:sectionIndex inView:self];
 }
 
+- (BOOL)cellSelectionStateAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view
+{
+	NSInteger sectionIndex = [_sectionViews indexOfObject:view];
+
+	return [self.dataSource cellSelectionStateAtIndex:cellIndex section:sectionIndex inView:self];
+}
+
 - (WKCollectionSectionView *)_sectionViewForIndex:(NSInteger)section
 {
 	WKCollectionSectionView * sectionView = nil;
@@ -268,6 +275,10 @@
 	}
 
 	resultingSize.height = totalHeight;
+	if (resultingSize.height < self.superview.frame.size.height)
+	{
+		resultingSize.height = self.superview.frame.size.height;
+	}
 
 	[self setFrameSize:resultingSize];
 

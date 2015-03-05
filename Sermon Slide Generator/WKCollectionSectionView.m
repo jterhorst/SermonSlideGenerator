@@ -85,6 +85,7 @@
 
 	cell.titleLabel.stringValue = [self.delegate titleForCellAtIndex:cellIndex inSectionView:self];
 	cell.thumbnailImageView.image = [self.delegate imageForCellAtIndex:cellIndex inSectionView:self];
+	cell.selected = [self.delegate cellSelectionStateAtIndex:cellIndex inSectionView:self];
 
 	if ([cell superview] != self)
 	{

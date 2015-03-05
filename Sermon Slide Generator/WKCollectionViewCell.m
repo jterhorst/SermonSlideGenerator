@@ -31,6 +31,7 @@
 		[self addSubview:self.titleLabel];
 
 
+		_selected = NO;
 		_wasClicked = NO;
 
 		self.thumbnailImageView = [[NSImageView alloc] initWithFrame:NSMakeRect(0, 22, frame.size.width, frame.size.height - 22)];
@@ -44,8 +45,14 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
-	
-    [[NSColor grayColor] set];
+
+	if (self.selected)
+		[[NSColor yellowColor] set];
+	else if (_wasClicked)
+		[[NSColor darkGrayColor] set];
+	else
+		[[NSColor grayColor] set];
+
 	[[NSBezierPath bezierPathWithRect:[self bounds]] fill];
 }
 

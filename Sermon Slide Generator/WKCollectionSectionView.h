@@ -21,6 +21,8 @@
 
 - (void)clickOnCellAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
 
+- (BOOL)cellSelectionStateAtIndex:(NSInteger)cellIndex inSectionView:(WKCollectionSectionView *)view;
+
 @end
 
 @interface WKCollectionSectionView : NSView
