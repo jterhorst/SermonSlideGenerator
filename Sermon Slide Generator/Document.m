@@ -19,6 +19,8 @@
 @interface Document () <NSTableViewDataSource, NSTableViewDelegate, ThumbnailViewControllerDelegate>
 {
 	DisplayOutputManager * _outputManager;
+	NSInteger _playingSlideIndex;
+	NSArray * _generatedSlides;
 }
 @end
 
@@ -28,6 +30,7 @@
     self = [super init];
     if (self) {
 		// Add your subclass-specific initialization here.
+		_playingSlideIndex = 0;
     }
     return self;
 }
@@ -75,6 +78,7 @@
 {
 	if ([keyPath isEqualToString:@"type"])
 	{
+		_generatedSlides = nil;
 		NSIndexSet * selectedIndexSet = [_slidesArrayController selectionIndexes];
 		[_slidesTable reloadData];
 		[_slidesArrayController setSelectionIndexes:selectedIndexSet];
@@ -83,6 +87,7 @@
 	}
 	else if ([keyPath isEqualToString:@"text"] || [keyPath isEqualToString:@"reference"] || [keyPath isEqualToString:@"mediaPath"])
 	{
+		_generatedSlides = nil;
 		// some kind of redraw without reloading the selection
 		NSInteger slideIndex = [[_slidesArrayController arrangedObjects] indexOfObject:object];
 		[_slidesTable reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:slideIndex] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
@@ -151,6 +156,8 @@
 
 - (NSArray *)generatedSlides
 {
+	if (_generatedSlides) return _generatedSlides;
+
 	NSMutableArray * slides = [NSMutableArray array];
 
 	for (NSInteger iterator = 0; iterator < [[self.sermonContainer slides] count]; iterator++)
@@ -158,15 +165,45 @@
 		[slides addObjectsFromArray:[self _slideContainersForSlide:[[self.sermonContainer orderedSlides] objectAtIndex:iterator]]];
 	}
 
-	return [NSArray arrayWithArray:slides];
+	_generatedSlides = [NSArray arrayWithArray:slides];
+	return _generatedSlides;
 }
+
+
 
 
 - (void)userClickedCellAtIndex:(NSInteger)cellIndex
 {
+	_playingSlideIndex = cellIndex;
 	[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:cellIndex]];
 }
 
+- (void)leftArrowPressed
+{
+	if (_playingSlideIndex > 0)
+	{
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex - 1]];
+		[_thumbnailController setPlayingCell:_playingSlideIndex];
+	}
+}
+
+- (void)rightArrowPressed
+{
+	if (_playingSlideIndex < [[self generatedSlides] count] - 1)
+	{
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex + 1]];
+		[_thumbnailController setPlayingCell:_playingSlideIndex];
+	}
+}
+
+- (void)spaceBarPressed
+{
+	if (_playingSlideIndex < [[self generatedSlides] count] - 1)
+	{
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex + 1]];
+		[_thumbnailController setPlayingCell:_playingSlideIndex];
+	}
+}
 
 
 - (NSArray *)_slideContainersForSlide:(Slide *)slide
@@ -270,29 +307,11 @@
 			[currentSlide appendString:currentString];
 		}
 
-//		while ([verseComponents count] > 0 && [renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.15) {
-//
-//			if ([verseComponents firstObject] && [renderer sizeForScriptureText:[currentSlide stringByAppendingString:[verseComponents firstObject]] renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.15)
-//			{
-//				if ([currentSlide length] > 0)
-//				{
-//					[currentSlide appendString:@" "];
-//				}
-//
-//				[currentSlide appendString:[verseComponents firstObject]];
-//			}
-//			if ([verseComponents count] > 0)
-//			{
-//				[verseComponents removeObjectAtIndex:0];
-//			}
-//		}
-
 		if ([renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height >= 1024 * 0.15)
 		{
 			[slides addObject:currentSlide];
 			currentSlide = [NSMutableString string];
 		}
-
 	}
 
 	if ([currentSlide length] > 0)
@@ -302,8 +321,6 @@
 
 	return slides;
 }
-
-
 
 float heightForStringDrawing(NSString *myString, NSFont *myFont, float myWidth)
 {

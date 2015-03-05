@@ -25,6 +25,8 @@
 @property (nonatomic, weak) IBOutlet WKCollectionView * collectionView;
 @property (nonatomic, weak) IBOutlet Document * document;
 
+- (void)setPlayingCell:(NSInteger)playingCell;
+
 - (void)reloadData;
 
 @end

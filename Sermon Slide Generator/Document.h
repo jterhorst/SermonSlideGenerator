@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "Sermon.h"
 #import "ThumbnailViewController.h"
+#import "KeyPressWindow.h"
 
-@interface Document : NSPersistentDocument
+@interface Document : NSPersistentDocument <KeyPressWindowDelegate>
 
 @property (nonatomic, weak) IBOutlet NSTableView * slidesTable;
 @property (nonatomic, strong) Sermon * sermonContainer;

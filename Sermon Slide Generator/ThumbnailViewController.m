@@ -27,6 +27,12 @@
 
 @implementation ThumbnailViewController
 
+- (void)setPlayingCell:(NSInteger)playingCell
+{
+	_selectedCellIndex = playingCell;
+
+	[_collectionView reloadData];
+}
 
 - (void)reloadData
 {
