@@ -182,16 +182,19 @@
 {
 	if (_playingSlideIndex > 0)
 	{
-		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex - 1]];
+		_playingSlideIndex--;
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex]];
 		[_thumbnailController setPlayingCell:_playingSlideIndex];
 	}
 }
 
 - (void)rightArrowPressed
 {
+	NSLog(@"right arrow");
 	if (_playingSlideIndex < [[self generatedSlides] count] - 1)
 	{
-		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex + 1]];
+		_playingSlideIndex++;
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex]];
 		[_thumbnailController setPlayingCell:_playingSlideIndex];
 	}
 }
@@ -200,7 +203,8 @@
 {
 	if (_playingSlideIndex < [[self generatedSlides] count] - 1)
 	{
-		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex + 1]];
+		_playingSlideIndex++;
+		[_outputManager displaySlideForContainer:[[self generatedSlides] objectAtIndex:_playingSlideIndex]];
 		[_thumbnailController setPlayingCell:_playingSlideIndex];
 	}
 }

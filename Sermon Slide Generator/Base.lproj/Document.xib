@@ -283,6 +283,7 @@
                                             <connections>
                                                 <outlet property="dataSource" destination="194-ff-6um" id="Afr-i9-4MO"/>
                                                 <outlet property="delegate" destination="194-ff-6um" id="C5P-Ee-eJS"/>
+                                                <outlet property="keyPressDelegate" destination="-2" id="kWQ-ev-86C"/>
                                             </connections>
                                         </view>
                                     </subviews>

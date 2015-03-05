@@ -4,6 +4,7 @@
 
 #import "WKCollectionViewCell.h"
 #import "WKCollectionSectionView.h"
+#import "KeyPressWindow.h"
 
 @class WKCollectionView;
 
@@ -36,6 +37,8 @@
 
 @property (nonatomic, weak) IBOutlet id<WKCollectionViewDelegate> delegate;
 @property (nonatomic, weak) IBOutlet id<WKCollectionViewDatasource> dataSource;
+
+@property (nonatomic, weak) IBOutlet id<KeyPressWindowDelegate> keyPressDelegate;
 
 - (void)reloadData;
 
