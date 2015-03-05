@@ -121,7 +121,7 @@
 			convertedMarginBottom = newConvertedMarginTop;
 		}
 
-		float adjustedSize = [self actualFontSizeForText:textToRender withFont:[NSFont fontWithName:textFontName size:origSize] withOriginalSize:origSize imageSize:CGSizeMake(renderSize.width, renderSize.height) innerSizeWithMargins:CGSizeMake(renderSize.width - convertedMarginLeft - convertedMarginRight - (renderSize.width * 0.01), renderSize.height - convertedMarginTop - convertedMarginBottom) shouldAutosizeText:shouldAutosizeText];
+		float adjustedSize = [self actualFontSizeForText:textToRender withFont:[NSFont fontWithName:textFontName size:origSize] withOriginalSize:origSize imageSize:CGSizeMake(renderSize.width, renderSize.height) innerSizeWithMargins:CGSizeMake(renderSize.width - convertedMarginLeft - convertedMarginRight - (renderSize.width * 0.03), renderSize.height - convertedMarginTop - convertedMarginBottom) shouldAutosizeText:shouldAutosizeText];
 
 		CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) textFontName, adjustedSize, NULL);
 
@@ -345,13 +345,6 @@
 		float convertedMarginLeft = [self actualPixelWidthForMarginWidth:marginLeft atSize:renderSize];
 		float convertedMarginRight = [self actualPixelWidthForMarginWidth:marginRight atSize:renderSize];
 
-		if (bottomOffset > 0)
-		{
-			convertedMarginBottom += bottomOffset;
-			convertedMarginBottom += 7;
-		}
-
-
 		CGRect convertedMarginRect = CGRectMake(convertedMarginLeft, convertedMarginTop, renderSize.width - convertedMarginLeft - convertedMarginRight, renderSize.height - convertedMarginTop - convertedMarginBottom);
 		if (convertedMarginRect.origin.x > convertedMarginRect.origin.x + convertedMarginRect.size.width)
 		{
@@ -371,9 +364,13 @@
 			convertedMarginBottom = newConvertedMarginTop;
 		}
 
+		if (bottomOffset > 0)
+		{
+			convertedMarginBottom += bottomOffset;
+			convertedMarginBottom += 7;
+		}
 
-
-		float adjustedSize = [self actualFontSizeForText:textToRender withFont:[NSFont fontWithName:textFontName size:origSize] withOriginalSize:origSize imageSize:CGSizeMake(renderSize.width, renderSize.height) innerSizeWithMargins:CGSizeMake(renderSize.width - convertedMarginLeft - convertedMarginRight - (renderSize.width * 0.01), renderSize.height - convertedMarginTop - convertedMarginBottom) shouldAutosizeText:shouldAutosizeText];
+		float adjustedSize = [self actualFontSizeForText:textToRender withFont:[NSFont fontWithName:textFontName size:origSize] withOriginalSize:origSize imageSize:CGSizeMake(renderSize.width, renderSize.height) innerSizeWithMargins:CGSizeMake(renderSize.width - convertedMarginLeft - convertedMarginRight - (renderSize.width * 0.03), renderSize.height - convertedMarginTop - convertedMarginBottom) shouldAutosizeText:shouldAutosizeText];
 
 		CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) textFontName, adjustedSize, NULL);
 
@@ -397,7 +394,6 @@
 										 textColor, (NSString *)kCTForegroundColorAttributeName,
 										 (__bridge id)paragraphStyle, (NSString *) kCTParagraphStyleAttributeName,
 										 nil];
-
 
 		NSAttributedString * stringToDraw = [[NSAttributedString alloc] initWithString:textToRender attributes:attributesDict];
 		if (!stringToDraw)

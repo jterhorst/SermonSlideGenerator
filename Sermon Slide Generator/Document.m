@@ -251,32 +251,55 @@
 
 - (NSArray *)_splitTextForScriptureSlideText:(NSString *)slideText
 {
+	NSScanner *scanner = [NSScanner scannerWithString:slideText];
+
 	SlideRenderer * renderer = [[SlideRenderer alloc] init];
 	NSMutableArray * slides = [NSMutableArray array];
 
-	NSMutableArray * verseComponents = [NSMutableArray arrayWithArray:[slideText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-	while ([verseComponents count] > 0) {
-		NSMutableString * currentSlide = [NSMutableString string];
+	NSMutableString * currentSlide = [NSMutableString string];
+	while (![scanner isAtEnd]) {
 
-		while ([verseComponents count] > 0 && [renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.15) {
+		NSString * currentString = nil;
+
+		if ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&currentString])
+		{
 			if ([currentSlide length] > 0)
 			{
 				[currentSlide appendString:@" "];
 			}
-			if ([verseComponents firstObject])
-			{
-				[currentSlide appendString:[verseComponents firstObject]];
-			}
-			if ([verseComponents count] > 0)
-				[verseComponents removeObjectAtIndex:0];
+			[currentSlide appendString:currentString];
 		}
 
-		if ([currentSlide length] > 0)
+//		while ([verseComponents count] > 0 && [renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.15) {
+//
+//			if ([verseComponents firstObject] && [renderer sizeForScriptureText:[currentSlide stringByAppendingString:[verseComponents firstObject]] renderSize:CGSizeMake(1280, 1024)].height < 1024 * 0.15)
+//			{
+//				if ([currentSlide length] > 0)
+//				{
+//					[currentSlide appendString:@" "];
+//				}
+//
+//				[currentSlide appendString:[verseComponents firstObject]];
+//			}
+//			if ([verseComponents count] > 0)
+//			{
+//				[verseComponents removeObjectAtIndex:0];
+//			}
+//		}
+
+		if ([renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height >= 1024 * 0.15)
 		{
 			[slides addObject:currentSlide];
+			currentSlide = [NSMutableString string];
 		}
+
 	}
-	
+
+	if ([currentSlide length] > 0)
+	{
+		[slides addObject:currentSlide];
+	}
+
 	return slides;
 }
 
