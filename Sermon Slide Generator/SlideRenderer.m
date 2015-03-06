@@ -382,6 +382,18 @@
 	{
 		SlideRenderMeta * meta = [self _slideRenderMetaForElement:element bottomOffset:bottomOffset renderSize:renderSize];
 
+		NSColor * textShadowColor = [NSColor blackColor];
+		if (mask)
+		{
+			textShadowColor = [NSColor whiteColor];
+		}
+		CGSize textShadowOffset = CGSizeMake(1, 1);
+		float textShadowBlur = 1;
+		float textShadowOpacity = 1.0;
+
+		// use colorWithAlphaComponent: to get the shadow opacity into the color itself, as there's no separate option for opacity.
+		CGContextSetShadowWithColor(context, textShadowOffset, textShadowBlur, [textShadowColor colorWithAlphaComponent:textShadowOpacity].CGColor);
+
 		CTFrameRef frame = meta.frame;
 
 		CGSize constraint = meta.constraint;

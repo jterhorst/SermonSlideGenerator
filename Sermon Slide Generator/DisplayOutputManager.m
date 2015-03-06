@@ -13,12 +13,16 @@
 
 #import "SlideRenderer.h"
 
+@import QuartzCore;
+
 @interface OutputWindow : NSWindow
 {
 	NSInteger _screenIndex;
 }
-@property (nonatomic, strong) NSImageView * outputImageView;
+@property (nonatomic, strong) NSImageView * outputImageView1;
+@property (nonatomic, strong) NSImageView * outputImageView2;
 - (NSInteger)screenMode;
+- (void)animateNewImage:(NSImage *)newImage;
 @end
 
 @implementation OutputWindow
@@ -37,8 +41,15 @@
 	self = [super initWithContentRect:screenRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
 	if (self) {
 
-		_outputImageView = [[NSImageView alloc] initWithFrame:[[self contentView] bounds]];
-		[[self contentView] addSubview:_outputImageView];
+		[[self contentView] setWantsLayer:YES];
+
+		_outputImageView1 = [[NSImageView alloc] initWithFrame:[[self contentView] bounds]];
+		[[self contentView] addSubview:_outputImageView1];
+
+		_outputImageView2 = [[NSImageView alloc] initWithFrame:[[self contentView] bounds]];
+		[[self contentView] addSubview:_outputImageView2];
+		_outputImageView2.alphaValue = 0;
+
 		if (screenIndex > 0)
 		{
 			[self setLevel:NSStatusWindowLevel+2];
@@ -46,8 +57,6 @@
 
 		[[self contentView] setBackgroundColor:[NSColor blackColor]];
 		[self setBackgroundColor:[NSColor blackColor]];
-
-		
 	}
 	return self;
 }
@@ -60,6 +69,26 @@
 	}
 
 	return 2;
+}
+
+- (void)animateNewImage:(NSImage *)newImage
+{
+	NSImageView * oldImageView = _outputImageView1;
+	NSImageView * newImageView = _outputImageView2;
+	if (_outputImageView2.alphaValue == 1)
+	{
+		oldImageView = _outputImageView2;
+		newImageView = _outputImageView1;
+	}
+
+	newImageView.image = newImage;
+
+	[CATransaction begin];
+	[CATransaction setAnimationDuration:0.3];
+	[CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+	[[oldImageView animator] setAlphaValue:0.0];
+	[[newImageView animator] setAlphaValue:1.0];
+	[CATransaction commit];
 }
 
 @end
@@ -147,7 +176,8 @@
 			{
 				slideImage = nil;
 			}
-			[[win outputImageView] setImage:slideImage];
+			[win animateNewImage:slideImage];
+
 			[newWindows addObject:win];
 		}
 
@@ -162,7 +192,7 @@
 			{
 				slideImage = nil;
 			}
-			[[win outputImageView] setImage:slideImage];
+			[win animateNewImage:slideImage];
 		}
 	}
 
