@@ -92,11 +92,21 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (CGSize)outputSize
+{
+	if ([_outputWindows lastObject])
+	{
+		return [[_outputWindows lastObject] frame].size;
+	}
+
+	return [[NSScreen mainScreen] frame].size;
+}
+
 - (CGFloat)outputAspectRatio
 {
-    if ([_outputWindows firstObject])
+    if ([_outputWindows lastObject])
     {
-        return [[_outputWindows firstObject] frame].size.width / [[_outputWindows firstObject] frame].size.height;
+        return [[_outputWindows lastObject] frame].size.width / [[_outputWindows lastObject] frame].size.height;
     }
     
     return 16.0f/9.0f;

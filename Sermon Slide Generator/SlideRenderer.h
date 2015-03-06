@@ -14,5 +14,5 @@
 @interface SlideRenderer : NSObject
 - (NSImage *)imageForSlideContainer:(SlideContainer *)slide renderSize:(CGSize)renderSize mask:(BOOL)mask;
 - (CGSize)sizeForSlideElement:(SlideElement *)element renderSize:(CGSize)renderSize;
-- (CGSize)sizeForScriptureText:(NSString *)text renderSize:(CGSize)renderSize;
+- (NSInteger)lineCountForScriptureText:(NSString *)text renderSize:(CGSize)renderSize;
 @end

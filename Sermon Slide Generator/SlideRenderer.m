@@ -120,7 +120,7 @@
     return image;
 }
 
-- (CGSize)sizeForScriptureText:(NSString *)text renderSize:(CGSize)renderSize
+- (NSInteger)lineCountForScriptureText:(NSString *)text renderSize:(CGSize)renderSize
 {
 	SlideElement * bodyElement = [[SlideElement alloc] init];
 	bodyElement.textValue = text;
@@ -130,7 +130,11 @@
 	bodyElement.fontName = @"MyriadPro-Bold";
 	bodyElement.fontSize = 40;
 
-	return [self sizeForSlideElement:bodyElement renderSize:renderSize];
+	SlideRenderMeta * meta = [self _slideRenderMetaForElement:bodyElement bottomOffset:0 renderSize:renderSize];
+
+	CFArrayRef lines = CTFrameGetLines(meta.frame);
+
+	return CFArrayGetCount(lines);
 }
 
 - (SlideRenderMeta *)_slideRenderMetaForElement:(SlideElement *)element bottomOffset:(CGFloat)bottomOffset renderSize:(CGSize)renderSize
@@ -140,7 +144,7 @@
 
 	// defaults
 	NSString * textFontName = @"HelveticaNeue-Bold";
-	float origSize = 55;
+	float origSize = 40;
 	CTTextAlignment theAlignment = kCTCenterTextAlignment;
 	NSColor * textColor = [NSColor whiteColor];
 	CGFloat textLineSpacing = 1.0;
@@ -257,7 +261,7 @@
 	{
 		yPos = (renderSize.height * 0.5) - (textSize.height * 0.5);
 	}
-
+	
 	if (theAlignment == kCTLeftTextAlignment)
 	{
 		xPos = convertedMarginLeft;

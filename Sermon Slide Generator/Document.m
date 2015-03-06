@@ -304,17 +304,17 @@
 
 		if ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&currentString])
 		{
+			if ([renderer lineCountForScriptureText:[currentSlide stringByAppendingFormat:@" %@", currentString] renderSize:[_outputManager outputSize]] > 3)
+			{
+				[slides addObject:currentSlide];
+				currentSlide = [NSMutableString string];
+			}
+
 			if ([currentSlide length] > 0)
 			{
 				[currentSlide appendString:@" "];
 			}
 			[currentSlide appendString:currentString];
-		}
-
-		if ([renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1280 * [self aspectRatioForThumbnails])].height >= 1024 * 0.15)
-		{
-			[slides addObject:currentSlide];
-			currentSlide = [NSMutableString string];
 		}
 	}
 
