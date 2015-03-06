@@ -311,7 +311,7 @@
 			[currentSlide appendString:currentString];
 		}
 
-		if ([renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1024)].height >= 1024 * 0.15)
+		if ([renderer sizeForScriptureText:currentSlide renderSize:CGSizeMake(1280, 1280 * [self aspectRatioForThumbnails])].height >= 1024 * 0.15)
 		{
 			[slides addObject:currentSlide];
 			currentSlide = [NSMutableString string];
