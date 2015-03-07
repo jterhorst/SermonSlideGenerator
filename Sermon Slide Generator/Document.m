@@ -16,11 +16,15 @@
 #import "SlideContainer.h"
 #import "SlideElement.h"
 
+NSString * SlideDragType = @"private.sermon";
+
 @interface Document () <NSTableViewDataSource, NSTableViewDelegate, ThumbnailViewControllerDelegate>
 {
 	DisplayOutputManager * _outputManager;
 	NSInteger _playingSlideIndex;
 	NSArray * _generatedSlides;
+
+	NSIndexSet * _draggedRows;
 }
 @end
 
@@ -38,6 +42,8 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
 	[super windowControllerDidLoadNib:aController];
 	// Add any code here that needs to be executed once the windowController has loaded the document's window.
+
+	[self.slidesTable registerForDraggedTypes:@[SlideDragType]];
 
 	_outputManager = [[DisplayOutputManager alloc] init];
 
@@ -72,6 +78,101 @@
 	}
 
 	//NSLog(@"%lu slides", (unsigned long)[_sermonContainer.slides count]);
+}
+
+- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+{
+	NSData *zNSIndexSetData =
+	[NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+	[pboard declareTypes:[NSArray arrayWithObject:SlideDragType]
+				   owner:self];
+	[pboard setData:zNSIndexSetData forType:SlideDragType];
+
+	_draggedRows = rowIndexes;
+
+	NSLog(@"row indexes: %@", rowIndexes);
+
+	return YES;
+}
+
+//- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row
+//{
+//	Slide * draggedSlide = [[_sermonContainer orderedSlides] objectAtIndex:row];
+//
+//	NSPasteboardItem * item = [[NSPasteboardItem alloc] init];
+//	[item setString:[NSString stringWithFormat:@"%lld", draggedSlide.slideIndex] forType:SlideDragType];
+//
+//	return item;
+//}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation
+{
+	if ([_draggedRows count] == 0) return NSDragOperationNone;
+	if (dropOperation == NSTableViewDropOn) return NSDragOperationNone;
+
+	NSLog(@"row indexes: %@", _draggedRows);
+	return NSDragOperationMove;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation
+{
+//	NSPasteboard *p = [info draggingPasteboard];
+//	NSString *rowKey = [p stringForType:SlideDragType];
+//
+//	int64_t rowIndex = [rowKey intValue];
+//
+//	Slide * draggedSlide = [[_sermonContainer orderedSlides] objectAtIndex:rowIndex];
+//
+//	for (Slide * slide in [_sermonContainer orderedSlides])
+//	{
+//		if (slide.slideIndex >= rowIndex)
+//		{
+//			slide.slideIndex = slide.slideIndex + 1;
+//		}
+//	}
+//
+//	draggedSlide.slideIndex = row;
+
+
+
+	if ([_draggedRows count] == 0) return NO;
+
+	NSIndexSet* rowIndexes = _draggedRows;
+	//NSInteger dragRow = [rowIndexes firstIndex];
+
+	_draggedRows = nil;
+
+
+	NSMutableArray * draggedSlides = [NSMutableArray array];
+
+	[rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * stop) {
+		[draggedSlides addObject:[[_sermonContainer orderedSlides] objectAtIndex:idx]];
+	}];
+
+	while ([draggedSlides count] > 0) {
+		int64_t newIndex = 0;
+		for (Slide * slide in [_sermonContainer orderedSlides])
+		{
+			slide.slideIndex = newIndex;
+			if (slide.slideIndex >= row)
+			{
+				slide.slideIndex = slide.slideIndex + 1;
+			}
+			newIndex++;
+		}
+
+		Slide * slide = [draggedSlides lastObject];
+		slide.slideIndex = row;
+		[draggedSlides removeObject:slide];
+	}
+
+	NSLog(@"titles: %@", [[_sermonContainer orderedSlides] valueForKey:@"text"]);
+
+	[_slidesTable reloadData];
+
+	[_slidesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+
+	return YES;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -150,6 +251,8 @@
 {
 
 }
+
+
 
 
 
@@ -261,7 +364,6 @@
 	else if (slide.type == SlideTypeScripture)
 	{
 		NSArray * textSlides = [self _splitTextForScriptureSlideText:slide.text];
-		NSLog(@"text slides: %@", textSlides);
 
 		for (NSString * text in textSlides)
 		{
