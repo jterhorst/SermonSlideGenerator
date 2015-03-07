@@ -165,9 +165,7 @@ NSString * SlideDragType = @"private.sermon";
 		slide.slideIndex = row;
 		[draggedSlides removeObject:slide];
 	}
-
-	NSLog(@"titles: %@", [[_sermonContainer orderedSlides] valueForKey:@"text"]);
-
+	
 	[_slidesTable reloadData];
 
 	[_slidesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
